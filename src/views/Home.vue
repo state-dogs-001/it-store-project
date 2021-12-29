@@ -1,26 +1,50 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <h1>Home page</h1>
+    User: {{ user.email }}
     <br />
-    <button @click="logout()">Logout</button>
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    User status: {{ status }}
+    <br />
+    <template>
+      <button @click="logout">Logout</button>
+    </template>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
+  data() {
+    return {
+      status: null,
+    };
+  },
+  computed: {
+    user: function () {
+      return this.$store.state.Auth.user;
+    },
+    status_user: function () {
+      return this.$store.state.Auth.authIsReady;
+    },
+  },
+  beforeCreate() {
+    if (this.$store.state.Auth.authIsReady == false) {
+      this.$router.push("/about");
+    }
+  },
+  created() {
+    if (this.status_user == true) {
+      this.status = "Logged in";
+    }
   },
   methods: {
+    // Logout
     ...mapActions(["signout"]),
     async logout() {
       await this.signout();
+      this.$router.push("/about");
     },
   },
 };
