@@ -36,7 +36,11 @@ export default {
       error: null,
     };
   },
-
+  beforeCreate() {
+    if (this.$store.state.Auth.authIsReady == true) {
+      this.$router.push("/home");
+    }
+  },
   methods: {
     ...mapActions(["signin"]),
     async submit() {
@@ -45,7 +49,7 @@ export default {
           email: this.email,
           password: this.password,
         });
-        this.$router.push("/");
+        this.$router.push("/home");
       } catch (err) {
         this.error = err.message;
       }
