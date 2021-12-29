@@ -23,3 +23,9 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 "# it-store-project" 
+
+### To copy firebase config txt to js
+```
+- cd to configs
+- cp firebase.txt firebase.js or copy firebase.txt firebase.js
+```
