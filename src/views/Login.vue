@@ -1,6 +1,7 @@
 <template>
-  <div class="about">
+  <div class="login">
     <h1>Login Test</h1>
+    <br />
     <form @submit.prevent="submit()">
       <input
         type="email"
@@ -10,6 +11,7 @@
         placeholder="Press e-mail here"
       />
       <br />
+      <br />
       <input
         type="password"
         id="password"
@@ -17,6 +19,11 @@
         v-model="password"
         placeholder="Press password here"
       />
+      <br />
+      <br />
+      <router-link to="/reset_password">
+        <p>Forgot password?</p>
+      </router-link>
       <br />
       <input type="submit" value="submit" />
       <div v-if="this.error">{{ error }}</div>
@@ -29,6 +36,7 @@
 import { mapActions } from "vuex";
 
 export default {
+  name: "Login",
   data() {
     return {
       email: null,

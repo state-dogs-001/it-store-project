@@ -1,12 +1,14 @@
 <template>
   <div class="home">
     <h1>Home page</h1>
-    User: {{ user.email }}
-    <br />
-    User status: {{ status }}
-    <br />
-    <template>
-      <button @click="logout">Logout</button>
+    <template v-if="status_user">
+      User: {{ user.email }}
+      <br />
+      User status: {{ status }}
+      <br />
+      Verify: {{ user.emailVerified }}
+      <br />
+      <button v-if="user" @click="logout">Logout</button>
     </template>
   </div>
 </template>
@@ -31,7 +33,7 @@ export default {
   },
   beforeCreate() {
     if (this.$store.state.Auth.authIsReady == false) {
-      this.$router.push("/about");
+      this.$router.push("/login");
     }
   },
   created() {
@@ -44,7 +46,8 @@ export default {
     ...mapActions(["signout"]),
     async logout() {
       await this.signout();
-      this.$router.push("/about");
+      location.reload;
+      this.$router.push("/login");
     },
   },
 };
