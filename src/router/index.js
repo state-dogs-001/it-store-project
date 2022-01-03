@@ -29,6 +29,15 @@ const routes = [
     name: "ResetPasswprd",
     component: () => import("../views/ResetPassword.vue"),
   },
+  {
+    path: "/test",
+    component: () => import("../views/Test.vue"),
+  },
+  {
+    path: "/search/:id",
+    name: "Search",
+    component: () => import("../views/Search.vue"),
+  },
 ];
 
 const router = new VueRouter({
