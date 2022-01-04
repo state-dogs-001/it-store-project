@@ -12,7 +12,7 @@ export default {
   },
   beforeCreate() {
     if (this.$store.state.Auth.authIsReady == true) {
-      this.$router.push("/home");
+      this.$router.push("/products");
     }
   },
 };

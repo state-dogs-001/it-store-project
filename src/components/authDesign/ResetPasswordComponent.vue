@@ -6,7 +6,7 @@
         :show="dismissCountDown"
         dismissible
         variant="danger"
-        class="mt-2"
+        class="mt-3"
         @dismissed="dismissCountDown = 0"
         @dismiss-count-down="countDownChanged"
       >
@@ -31,15 +31,15 @@
       </b-alert>
 
       <!-- Card form reset password -->
-      <b-card class="card my-4" header-tag="header">
+      <b-card class="card mt-4 mb-4" header-tag="header">
         <template #header>
-          <h1>รีเซ็ตรหัสผ่าน <b-icon icon="arrow-clockwise" /></h1>
+          <h1><b-icon icon="arrow-clockwise" /> รีเซ็ตรหัสผ่าน</h1>
         </template>
         <!-- Form reset Password -->
         <b-form @submit.stop.prevent="sendEmail">
           <b-row>
-            <b-col sm="12" lg="3"> E-mail </b-col>
-            <b-col sm="12" lg="9">
+            <b-col sm="12" lg="2"> E-mail </b-col>
+            <b-col sm="12" lg="10">
               <input
                 type="email"
                 id="email"
@@ -47,6 +47,7 @@
                 v-model="email"
                 required
                 class="form-control"
+                placeholder="กรุณากรอกอีเมลล์ที่สมัคร"
               />
             </b-col>
             <!-- Login link -->
@@ -67,9 +68,11 @@
         <span>
           หากต้องการจะรีเซ็ต Password
           <br />
-          กรุณาตรวจสอบว่า E-mail ที่ใช้สมัคร
+          อีเมลล์ที่ใช้สมัครต้องเป็นอีเมลล์ที่มีอยู่จริง เท่านั้น
           <br />
-          เป็น E-mail ที่มีอยู่จริง
+          <br />
+          หมายเหตุ: หากไม่เจอลิงค์สำหรับการรีเซ็ต Password
+          กรุณาตรวจสอบอีกครั้งที่กล่องข้อความขยะ
         </span>
       </b-alert>
     </b-container>
@@ -115,4 +118,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+</style>

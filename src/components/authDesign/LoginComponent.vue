@@ -6,7 +6,7 @@
         :show="dismissCountDown"
         dismissible
         variant="danger"
-        class="mt-2"
+        class="mt-3"
         @dismissed="dismissCountDown = 0"
         @dismiss-count-down="countDownChanged"
       >
@@ -30,15 +30,15 @@
       </b-alert>
 
       <!-- Card form login -->
-      <b-card class="card my-3" header-tag="header">
+      <b-card class="card mt-4 mb-2" header-tag="header">
         <template #header>
           <h1><b-icon icon="box-arrow-in-right" /> เข้าสู่ระบบ</h1>
         </template>
         <!-- Form login -->
         <b-form @submit.stop.prevent="submit">
           <b-row>
-            <b-col lg="3" sm="12" class="mt-2"> E-mail </b-col>
-            <b-col lg="9" sm="12" class="mt-2">
+            <b-col lg="2" sm="12" class="mt-2"> E-mail </b-col>
+            <b-col lg="10" sm="12" class="mt-2">
               <input
                 type="email"
                 id="email"
@@ -46,10 +46,11 @@
                 v-model="email"
                 required
                 class="form-control"
+                placeholder="กรุณากรอกอีเมลล์ที่สมัคร"
               />
             </b-col>
-            <b-col lg="3" sm="12" class="my-2"> Password </b-col>
-            <b-col lg="9" sm="12" class="my-2">
+            <b-col lg="2" sm="12" class="my-2"> Password </b-col>
+            <b-col lg="10" sm="12" class="my-2">
               <input
                 type="password"
                 id="password"
@@ -57,6 +58,7 @@
                 v-model="password"
                 required
                 class="form-control"
+                placeholder="กรุณากรอกรหัสผ่าน"
               />
             </b-col>
             <!-- Link to register page -->
@@ -86,13 +88,13 @@
             </div>
           </b-col>
           <b-col sm="12" lg="6" class="my-2 text-center">
-            <b-button variant="primary" block>
+            <b-button variant="primary" block @click="facebookSignin">
               <span>Facebook </span>
               <b-icon icon="facebook" />
             </b-button>
           </b-col>
           <b-col sm="12" lg="6" class="my-2 text-center">
-            <b-button variant="danger" block>
+            <b-button variant="danger" block @click="googleSignin">
               <span>Google </span>
               <b-icon icon="google" />
             </b-button>
@@ -122,7 +124,7 @@ export default {
     };
   },
   methods: {
-    // Login
+    // Normal Login
     ...mapActions(["signin"]),
     async submit() {
       try {
@@ -134,7 +136,7 @@ export default {
         this.showSuccessAlert = true;
         // Set time to redirect to home page 2 sec.
         setTimeout(() => {
-          this.$router.push("/home");
+          this.$router.push("/products");
         }, 2000);
       } catch (err) {
         // Show alert when login failed
@@ -142,6 +144,43 @@ export default {
         this.error = err.message;
       }
     },
+
+    // Google Login
+    ...mapActions(["signinWithGoogle"]),
+    async googleSignin() {
+      try {
+        await this.signinWithGoogle();
+        // Set Statatus of showSuccessAlert to show alert
+        this.showSuccessAlert = true;
+        // Set time to redirect to home page 2 sec.
+        setTimeout(() => {
+          this.$router.push("/products");
+        }, 2000);
+      } catch (err) {
+        // Show alert when login failed
+        this.dismissCountDown = this.dismissSecs;
+        this.error = err.message;
+      }
+    },
+
+    // Facebook signin
+    ...mapActions(["signinWithFacebook"]),
+    async facebookSignin() {
+      try {
+        await this.signinWithFacebook();
+        // Set Statatus of showSuccessAlert to show alert
+        this.showSuccessAlert = true;
+        // Set time to redirect to home page 2 sec.
+        setTimeout(() => {
+          this.$router.push("/products");
+        }, 2000);
+      } catch (err) {
+        // Show alert when login failed
+        this.dismissCountDown = this.dismissSecs;
+        this.error = err.message;
+      }
+    },
+
     // Count Down Alert
     countDownChanged(dismissCountDown) {
       this.dismissCountDown = dismissCountDown;
@@ -151,19 +190,24 @@ export default {
 </script>
 
 <style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
 .separator {
   display: flex;
   align-items: center;
   text-align: center;
 }
-
 .separator::before,
 .separator::after {
   content: "";
   flex: 1;
   border-bottom: 1px solid rgb(206, 200, 200);
 }
-
 .separator:not(:empty)::before {
   margin-right: 0.25em;
 }

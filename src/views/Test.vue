@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TestComp from "../components/authDesign/ResetPasswordComponent.vue";
+import TestComp from "../components/productDesign/ProductComponent.vue";
 export default {
   components: {
     TestComp,

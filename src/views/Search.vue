@@ -19,14 +19,6 @@ export default {
       searchText: this.$route.params.id,
     };
   },
-  mounted() {
-    this.init();
-  },
-  methods: {
-    init() {
-      console.log(this.$route.params.id);
-    },
-  },
 };
 </script>
 
