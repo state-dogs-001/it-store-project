@@ -1,52 +1,21 @@
 <template>
   <div>
-    <b-card-group deck class="my-3">
-      <b-card
-        title="Title"
-        img-src="https://picsum.photos/300/300/?image=41"
-        img-alt="Image"
-        img-top
-      >
-        <b-card-text>
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This content is a little bit longer.
-        </b-card-text>
-        <template #footer>
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </template>
-      </b-card>
+    <b-card
+      title="Card Title"
+      img-src="https://i.pinimg.com/originals/01/5a/17/015a1757e67f766a12621af543b3a5fd.jpg"
+      img-alt="Image"
+      img-top
+      tag="article"
+      style="max-width: 18rem"
+      class="mb-5"
+    >
+      <b-card-text>
+        Some quick example text to build on the card title and make up the bulk
+        of the card's content.
+      </b-card-text>
 
-      <b-card
-        title="Title"
-        img-src="https://picsum.photos/300/300/?image=41"
-        img-alt="Image"
-        img-top
-      >
-        <b-card-text>
-          This card has supporting text below as a natural lead-in to additional
-          content.
-        </b-card-text>
-        <template #footer>
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </template>
-      </b-card>
-
-      <b-card
-        title="Title"
-        img-src="https://picsum.photos/300/300/?image=41"
-        img-alt="Image"
-        img-top
-      >
-        <b-card-text>
-          This is a wider card with supporting text below as a natural lead-in
-          to additional content. This card has even longer content than the
-          first to show that equal height action.
-        </b-card-text>
-        <template #footer>
-          <small class="text-muted">Last updated 3 mins ago</small>
-        </template>
-      </b-card>
-    </b-card-group>
+      <b-button href="#" variant="primary">Go somewhere</b-button>
+    </b-card>
   </div>
 </template>
 
@@ -54,4 +23,10 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+.card {
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+}
+</style>

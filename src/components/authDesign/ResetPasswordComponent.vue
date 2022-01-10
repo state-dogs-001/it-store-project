@@ -31,7 +31,12 @@
       </b-alert>
 
       <!-- Card form reset password -->
-      <b-card class="card mt-4 mb-4" header-tag="header">
+      <b-card
+        class="card mt-5 mb-4"
+        header-tag="header"
+        header-bg-variant="dark"
+        header-text-variant="white"
+      >
         <template #header>
           <h1><b-icon icon="arrow-clockwise" /> รีเซ็ตรหัสผ่าน</h1>
         </template>
@@ -45,6 +50,7 @@
                 id="email"
                 name="email"
                 v-model="email"
+                pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 required
                 class="form-control"
                 placeholder="กรุณากรอกอีเมลล์ที่สมัคร"
@@ -101,7 +107,7 @@ export default {
     async sendEmail() {
       try {
         await this.resetpassword({
-          email: this.email,
+          email: this.email.toLowerCase(),
         });
         // Set Statatus of showSuccessAlert to show alert
         this.showSuccessAlert = true;
@@ -120,6 +126,7 @@ export default {
 
 <style>
 .card {
+  border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }

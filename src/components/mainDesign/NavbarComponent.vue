@@ -1,7 +1,12 @@
 <template>
   <div>
-    <b-navbar class="nav-shadow" toggleable="lg" type="light" variant="light">
-      <b-navbar-brand to="/">
+    <b-navbar
+      class="nav-shadow"
+      toggleable="lg"
+      type="dark"
+      variant="transparent"
+    >
+      <b-navbar-brand to="/home">
         <span class="font-weight-light"> IT </span>
         <span class="font-weight-bold">
           Market

@@ -30,7 +30,12 @@
       </b-alert>
 
       <!-- Card form login -->
-      <b-card class="card mt-4 mb-2" header-tag="header">
+      <b-card
+        class="card mt-5 mb-2"
+        header-tag="header"
+        header-bg-variant="dark"
+        header-text-variant="white"
+      >
         <template #header>
           <h1><b-icon icon="box-arrow-in-right" /> เข้าสู่ระบบ</h1>
         </template>
@@ -44,6 +49,7 @@
                 id="email"
                 name="email"
                 v-model="email"
+                pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 required
                 class="form-control"
                 placeholder="กรุณากรอกอีเมลล์ที่สมัคร"
@@ -56,6 +62,8 @@
                 id="password"
                 name="password"
                 v-model="password"
+                minlength="6"
+                maxlength="20"
                 required
                 class="form-control"
                 placeholder="กรุณากรอกรหัสผ่าน"
@@ -129,7 +137,7 @@ export default {
     async submit() {
       try {
         await this.signin({
-          email: this.email,
+          email: this.email.toLowerCase(),
           password: this.password,
         });
         // Set Statatus of showSuccessAlert to show alert
@@ -191,6 +199,7 @@ export default {
 
 <style>
 .card {
+  border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }

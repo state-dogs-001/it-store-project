@@ -30,7 +30,12 @@
       </b-alert>
 
       <!-- Card form register -->
-      <b-card class="card mt-4 mb-2" header-tag="header">
+      <b-card
+        class="card mt-5 mb-2"
+        header-tag="header"
+        header-bg-variant="dark"
+        header-text-variant="white"
+      >
         <template #header>
           <h1><b-icon icon="person-plus" /> สมัครสมาชิก</h1>
         </template>
@@ -46,9 +51,11 @@
                 id="firstName"
                 name="firstName"
                 v-model="firstName"
+                pattern="^[A-Za-z]+$|^[ก-๏\s]+$"
+                maxlength="16"
                 required
                 class="form-control"
-                placeholder="กรุณากรอกชื่อ"
+                placeholder="กรุณากรอกชื่อ ภาษาไทยหรืออังกฤษเท่านั้น"
               />
             </b-col>
             <!-- Last Name -->
@@ -58,9 +65,11 @@
                 id="lastName"
                 name="lastName"
                 v-model="lastName"
+                pattern="^[A-Za-z]+$|^[ก-๏\s]+$"
+                maxlength="16"
                 required
                 class="form-control"
-                placeholder="กรุณากรอกนามสกุล"
+                placeholder="กรุณากรอกนามสกุล ภาษาไทยหรืออังกฤษเท่านั้น"
               />
             </b-col>
             <!-- E-mail -->
@@ -71,21 +80,38 @@
                 id="email"
                 name="email"
                 v-model="email"
+                pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 required
                 class="form-control"
                 placeholder="กรุณากรอกอีเมลล์เพื่อสมัคร"
               />
             </b-col>
+            <!-- Password -->
             <b-col lg="2" sm="12" class="mt-2"> Password </b-col>
-            <b-col lg="10" sm="12" class="my-2">
+            <b-col lg="10" sm="12" class="mt-2">
               <input
                 type="password"
                 id="password"
                 name="password"
                 v-model="password"
+                minlength="6"
+                maxlength="20"
                 required
                 class="form-control"
-                placeholder="กรุณากรอกรหัสผ่าน"
+                placeholder="กรุณากรอกรหัสผ่าน ขั้นต่ำ 6 ตัวอักษร"
+              />
+            </b-col>
+            <!-- Password Confirm -->
+            <b-col lg="2" sm="12" class="mt-2">ยืนยัน Password </b-col>
+            <b-col lg="10" sm="12" class="mt-2">
+              <input
+                type="password"
+                id="password_confirm"
+                name="password_confirm"
+                v-model="password_confirm"
+                required
+                class="form-control"
+                placeholder="กรุณากรอกรหัสผ่านอีกครั้ง"
               />
             </b-col>
             <!-- Link to login page -->
@@ -117,6 +143,7 @@ export default {
       lastName: null,
       email: null,
       password: null,
+      password_confirm: null,
       error: null,
 
       // Alert Countdown Attributes
@@ -129,22 +156,31 @@ export default {
     // Register function
     ...mapActions(["signup"]),
     async submit() {
-      try {
-        await this.signup({
-          email: this.email,
-          password: this.password,
-          name: this.firstName + " " + this.lastName,
-        });
-        // Set Statatus of showSuccessAlert to show alert
-        this.showSuccessAlert = true;
-        // Set time to redirect to home page 2 sec.
-        setTimeout(() => {
-          this.$router.push("/products");
-        }, 2000);
-      } catch (err) {
+      // If password and confirm password match
+      if (this.password == this.password_confirm) {
+        try {
+          await this.signup({
+            email: this.email.toLowerCase(),
+            password: this.password,
+            name: this.firstName + " " + this.lastName,
+          });
+          // Set Statatus of showSuccessAlert to show alert
+          this.showSuccessAlert = true;
+          // Set time to redirect to home page 2 sec.
+          setTimeout(() => {
+            this.$router.push("/products");
+          }, 2000);
+        } catch (err) {
+          // Show alert when login failed
+          this.dismissCountDown = this.dismissSecs;
+          this.error = err.message;
+        }
+      }
+      // If password and confirm password not match
+      else {
         // Show alert when login failed
         this.dismissCountDown = this.dismissSecs;
-        this.error = err.message;
+        this.error = "Password not match, Try check.";
       }
     },
     // Count Down Alert
@@ -157,6 +193,7 @@ export default {
 
 <style>
 .card {
+  border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 }

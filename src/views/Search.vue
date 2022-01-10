@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <b-row>
-        <b-col class="mt-5">
+        <b-col class="mt-5 text-light">
           <h1>ค้นหา: {{ searchText }}</h1>
           <br />
           <p>ผลการค้นหา</p>

@@ -17,50 +17,21 @@
           </div>
 
           <div class="col-xs-6 col-md-3">
-            <h6>Categories</h6>
-            <ul class="footer-links">
-              <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-              <li>
-                <a href="http://scanfcode.com/category/front-end-development/"
-                  >UI Design</a
-                >
-              </li>
-              <li>
-                <a href="http://scanfcode.com/category/back-end-development/"
-                  >PHP</a
-                >
-              </li>
-              <li>
-                <a
-                  href="http://scanfcode.com/category/java-programming-language/"
-                  >Java</a
-                >
-              </li>
-              <li>
-                <a href="http://scanfcode.com/category/android/">Android</a>
-              </li>
-              <li>
-                <a href="http://scanfcode.com/category/templates/">Templates</a>
-              </li>
-            </ul>
+            <!-- Tab Quick Links to right -->
           </div>
 
           <div class="col-xs-6 col-md-3">
             <h6>Quick Links</h6>
             <ul class="footer-links">
-              <li><a href="http://scanfcode.com/about/">About Us</a></li>
-              <li><a href="http://scanfcode.com/contact/">Contact Us</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact Us</a></li>
               <li>
-                <a href="http://scanfcode.com/contribute-at-scanfcode/"
-                  >Contribute</a
-                >
+                <a href="#">Contribute</a>
               </li>
               <li>
-                <a href="http://scanfcode.com/privacy-policy/"
-                  >Privacy Policy</a
-                >
+                <a href="#">Privacy Policy</a>
               </li>
-              <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+              <li><a href="#">Sitemap</a></li>
             </ul>
           </div>
         </div>
@@ -96,34 +67,24 @@ export default {};
 
 <style>
 .site-footer {
-  background-color: #f8f9fa;
+  background-color: #292b2c;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
   padding: 45px 0 20px;
   font-size: 15px;
   line-height: 24px;
-  color: #737373;
+  color: #ffffff;
 }
 .site-footer hr {
-  border-top-color: #bbb;
+  border: 1px solid white;
   opacity: 0.5;
 }
-.site-footer hr.small {
-  margin: 20px 0;
-}
 .site-footer h6 {
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
   font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
   margin-top: 5px;
   letter-spacing: 2px;
-}
-.site-footer a {
-  color: #737373;
-}
-.site-footer a:hover {
-  color: #3366cc;
-  text-decoration: none;
 }
 .footer-links {
   padding-left: 0;
@@ -133,12 +94,12 @@ export default {};
   display: block;
 }
 .footer-links a {
-  color: #737373;
+  color: #ffffff;
 }
 .footer-links a:active,
 .footer-links a:focus,
 .footer-links a:hover {
-  color: #3366cc;
+  color: #ff0000;
   text-decoration: none;
 }
 .footer-links.inline li {
@@ -167,9 +128,6 @@ export default {};
 @media (max-width: 767px) {
   .site-footer {
     padding-bottom: 0;
-  }
-  .site-footer .copyright-text,
-  .site-footer .social-icons {
     text-align: center;
   }
 }
