@@ -1,14 +1,15 @@
 <template>
-  <div class="register">
-    <RegComp />
+  <div class="login">
+    <LoginComp />
   </div>
 </template>
 
 <script>
-import RegComp from "../components/authDesign/RegisterComponent.vue";
+import LoginComp from "../../components/authDesign/LoginComponent.vue";
 export default {
+  name: "Login",
   components: {
-    RegComp,
+    LoginComp,
   },
   beforeCreate() {
     if (this.$store.state.Auth.authIsReady == true) {
@@ -17,5 +18,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

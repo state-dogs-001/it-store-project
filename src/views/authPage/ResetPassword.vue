@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import ResetPasswordComp from "../components/authDesign/ResetPasswordComponent.vue";
+import ResetPasswordComp from "../../components/authDesign/ResetPasswordComponent.vue";
 
 export default {
   name: "ResetPassword",

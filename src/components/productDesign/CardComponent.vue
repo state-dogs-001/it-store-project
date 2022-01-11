@@ -2,19 +2,17 @@
   <div>
     <b-card
       title="Card Title"
-      img-src="https://i.pinimg.com/originals/01/5a/17/015a1757e67f766a12621af543b3a5fd.jpg"
+      img-src="https://wallpapermemory.com/uploads/688/patrick-star-background-hd-2880x1800-135702.jpg"
       img-alt="Image"
       img-top
       tag="article"
       style="max-width: 18rem"
-      class="mb-5"
+      class="card mb-5"
     >
-      <b-card-text>
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </b-card-text>
+      <b-card-text> Prics = 10$ </b-card-text>
 
-      <b-button href="#" variant="primary">Go somewhere</b-button>
+      <b-button href="#" variant="primary" class="mr-2">Go somewhere</b-button>
+      <b-button href="#" variant="success">View</b-button>
     </b-card>
   </div>
 </template>
@@ -27,6 +25,21 @@ export default {};
 .card {
   margin: 0 auto; /* Added */
   float: none; /* Added */
-  margin-bottom: 10px; /* Added */
+  margin-bottom: 100px; /* Added */
+  overflow: hidden;
+  transform: 0.3s;
+}
+.card:hover {
+  box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.card img {
+  max-width: 18rem;
+  max-height: 10rem;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+.card img:hover {
+  -webkit-transform: scale(1.08);
+  transform: scale(1.08);
 }
 </style>

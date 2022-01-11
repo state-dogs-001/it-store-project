@@ -5,6 +5,10 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: "*",
+    component: () => import("../views/NotFound.vue"),
+  },
+  {
     path: "/",
     redirect: "/home",
   },
@@ -16,22 +20,22 @@ const routes = [
   {
     path: "/products",
     name: "Products",
-    component: () => import("../views/Products.vue"),
+    component: () => import("../views/productPage/Products.vue"),
   },
   {
     path: "/login",
     name: "Login",
-    component: () => import("../views/Login.vue"),
+    component: () => import("../views/authPage/Login.vue"),
   },
   {
     path: "/register",
     name: "Register",
-    component: () => import("../views/Register.vue"),
+    component: () => import("../views/authPage/Register.vue"),
   },
   {
     path: "/reset_password",
     name: "ResetPasswprd",
-    component: () => import("../views/ResetPassword.vue"),
+    component: () => import("../views/authPage/ResetPassword.vue"),
   },
   {
     path: "/test",
@@ -40,7 +44,7 @@ const routes = [
   {
     path: "/search/:id",
     name: "Search",
-    component: () => import("../views/Search.vue"),
+    component: () => import("../views/productPage/Search.vue"),
   },
 ];
 

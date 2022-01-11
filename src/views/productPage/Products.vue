@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import ProductComp from "../components/productDesign/ProductComponent.vue";
+import ProductComp from "../../components/productDesign/ProductComponent.vue";
 
 export default {
   name: "Home",
