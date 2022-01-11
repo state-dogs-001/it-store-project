@@ -25,7 +25,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 "# it-store-project" 
 
 
-### To copy .env.example to .env
-```
-- cp .env.example .env or copy .env.example .env
-```
