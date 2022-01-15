@@ -5,14 +5,13 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-6">
-            <h6>About</h6>
+            <h6>เกี่ยวกับ</h6>
             <p class="text-justify">
-              Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative to
-              help the upcoming programmers with the code. Scanfcode focuses on
-              providing the most efficient code or snippets as the code wants to
-              be simple. We will help programmers build up concepts in different
-              programming languages that include C, C++, Java, HTML, CSS,
-              Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.
+              เกี่ยวกับเว็บไซต์
+              <router-link to="/home" class="router-color"
+                >ITMarket</router-link
+              >
+              ถูกจัดทำขึ้นเพื่อเป็นกรณีศึกษาของเว็บไซต์ซื้อขายสินค้าแบบออนไลน์เท่านั้นสินค้าที่ถูกแสดงในเว็บไซต์นี้ถูกใช้เพื่อเป็นกรณีศึกษาและไม่ได้มีเจตนาในการละเมิดลิขสิทธิ์
             </p>
           </div>
 
@@ -21,17 +20,23 @@
           </div>
 
           <div class="col-xs-6 col-md-3">
-            <h6>Quick Links</h6>
+            <h6>อ้างอิง</h6>
             <ul class="footer-links">
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact Us</a></li>
               <li>
-                <a href="#">Contribute</a>
+                <a href="https://www.advice.co.th/" target="_blank">Advice</a>
+              </li>
+              <li><a href="https://www.jib.co.th/" target="_blank">JIB</a></li>
+              <li>
+                <a href="https://www.bnn.in.th/th" target="_blank">BaNANA</a>
               </li>
               <li>
-                <a href="#">Privacy Policy</a>
+                <a href="https://www.apple.com/th/" target="_blank"
+                  >Apple Store</a
+                >
               </li>
-              <li><a href="#">Sitemap</a></li>
+              <li>
+                <a href="https://itcity.co.th/" target="_blank">IT CITY</a>
+              </li>
             </ul>
           </div>
         </div>
@@ -42,16 +47,24 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
             <ul class="social-icons">
               <li>
-                <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                <a class="facebook" href="#">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
               </li>
               <li>
-                <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                <a class="twitter" href="#">
+                  <i class="fab fa-twitter"></i>
+                </a>
               </li>
               <li>
-                <a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>
+                <a class="github" href="#">
+                  <i class="fab fa-github"></i>
+                </a>
               </li>
               <li>
-                <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                <a class="instagram" href="#">
+                  <i class="fab fa-instagram"></i>
+                </a>
               </li>
             </ul>
           </div>
@@ -75,7 +88,7 @@ export default {};
   color: #ffffff;
 }
 .site-footer hr {
-  border: 1px solid white;
+  border: 0.5px solid white;
   opacity: 0.5;
 }
 .site-footer h6 {
@@ -180,11 +193,11 @@ export default {};
 .social-icons a.twitter:hover {
   background-color: #00aced;
 }
-.social-icons a.linkedin:hover {
-  background-color: #007bb6;
+.social-icons a.instagram:hover {
+  background-color: #e00bd6;
 }
-.social-icons a.dribbble:hover {
-  background-color: #ea4c89;
+.social-icons a.github:hover {
+  background-color: rgb(117, 111, 111);
 }
 @media (max-width: 767px) {
   .social-icons li.title {
@@ -192,5 +205,8 @@ export default {};
     margin-right: 0;
     font-weight: 600;
   }
+}
+.router-color {
+  color: white;
 }
 </style>

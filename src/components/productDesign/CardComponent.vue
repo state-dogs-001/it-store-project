@@ -33,8 +33,8 @@ export default {};
   box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.2);
 }
 .card img {
-  max-width: 18rem;
-  max-height: 10rem;
+  width: 18rem;
+  height: 10rem;
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;
 }
