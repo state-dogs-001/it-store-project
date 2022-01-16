@@ -20,7 +20,10 @@
             </template>
             <template v-else>
               <div v-for="item in filterData" :key="item.text">
-                {{ item.text }}
+                <p>
+                  {{ item.text }}
+                  <b-button @click="test(item.id)">Show ID</b-button>
+                </p>
               </div>
             </template>
           </b-col>
@@ -38,12 +41,6 @@ export default {
       searchText: this.$route.params.id,
     };
   },
-  // If not login redirect to login page
-  beforeCreate() {
-    if (this.$store.state.Auth.authIsReady == false) {
-      this.$router.push("/login");
-    }
-  },
   created() {
     // Create function get data
     this.getDataFromDB();
@@ -52,6 +49,9 @@ export default {
     ...mapActions(["getData"]),
     async getDataFromDB() {
       await this.getData();
+    },
+    test(i) {
+      alert(i);
     },
   },
   computed: {

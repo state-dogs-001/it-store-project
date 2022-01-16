@@ -16,64 +16,11 @@
         >คลิ๊กเพื่อดูสินค้า</b-button
       >
     </b-jumbotron>
-    <b-container>
-      <b-card>
-        <b-row>
-          <b-col lg="6" sm="12" class="my-3">
-            <b-carousel
-              id="carousel-fade"
-              style="text-shadow: 0px 0px 2px #000"
-              fade
-              indicators
-              img-width="1024"
-              img-height="480"
-            >
-              <b-carousel-slide
-                img-src="https://picsum.photos/1024/480/?image=10"
-              ></b-carousel-slide>
-              <b-carousel-slide
-                img-src="https://picsum.photos/1024/480/?image=12"
-              ></b-carousel-slide>
-              <b-carousel-slide
-                img-src="https://picsum.photos/1024/480/?image=22"
-              ></b-carousel-slide>
-            </b-carousel>
-          </b-col>
-
-          <b-col lg="6" sm="12" class="my-3">
-            <b-carousel
-              id="carousel-fade"
-              style="text-shadow: 0px 0px 2px #000"
-              fade
-              indicators
-              img-width="1024"
-              img-height="480"
-            >
-              <b-carousel-slide
-                img-src="https://picsum.photos/1024/480/?image=10"
-              ></b-carousel-slide>
-              <b-carousel-slide
-                img-src="https://picsum.photos/1024/480/?image=12"
-              ></b-carousel-slide>
-              <b-carousel-slide
-                img-src="https://picsum.photos/1024/480/?image=22"
-              ></b-carousel-slide>
-            </b-carousel>
-          </b-col>
-        </b-row>
-      </b-card>
-    </b-container>
   </div>
 </template>
 
 <script>
-export default {
-  beforeCreate() {
-    if (this.$store.state.Auth.authIsReady == true) {
-      this.$router.push("/products");
-    }
-  },
-};
+export default {};
 </script>
 
 <style>
@@ -86,17 +33,6 @@ hr {
 }
 .jumbotron-background {
   background: none;
-  min-height: 50vh;
-}
-.card {
-  background: none;
-  border: none;
-}
-.girl-shop {
-  margin: 4rem 0 2rem 0;
-  text-align: center;
-}
-.girl-shop img {
-  width: 20rem;
+  min-height: 80vh;
 }
 </style>

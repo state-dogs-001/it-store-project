@@ -8,7 +8,7 @@
         header-text-variant="light"
       >
         <template #header>
-          <h2>เปลี่ยนรหัสผ่าน</h2>
+          <h1>สินค้าในตะกร้า</h1>
         </template>
       </b-card>
     </b-container>

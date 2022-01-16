@@ -3,7 +3,6 @@
     <b-card
       title="Card Title"
       img-src="https://wallpapermemory.com/uploads/688/patrick-star-background-hd-2880x1800-135702.jpg"
-      img-alt="Image"
       img-top
       tag="article"
       style="max-width: 18rem"

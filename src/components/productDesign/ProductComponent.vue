@@ -12,7 +12,16 @@
         </b-col>
         <!-- Products -->
         <b-col sm="12" lg="12">
-          <b-card class="card mb-5" no-body>
+          <b-card
+            class="card mb-5"
+            header-tag="header"
+            header-bg-variant="dark"
+            header-text-variant="white"
+            no-body
+          >
+            <template #header>
+              <h1>เลือกซื้อสินค้า</h1>
+            </template>
             <TabComp />
           </b-card>
         </b-col>

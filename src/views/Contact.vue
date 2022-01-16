@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <b-card
-        class="mt-5 mb-3"
+        class="mt-5 mb-5"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="white"

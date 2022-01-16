@@ -7,15 +7,22 @@
       <router-view />
     </div>
     <FooterComp />
+    <GoTop
+      :size="60"
+      bg-color="rgb(255, 43, 96)"
+      ripple-bg="rgba(0, 0, 0, 0.5)"
+    />
   </div>
 </template>
 
 <script>
+import GoTop from "@inotom/vue-go-top";
 import NavBar from "./components/mainDesign/NavbarComponent.vue";
 import FooterComp from "./components/mainDesign/FooterComponent.vue";
 
 export default {
   components: {
+    GoTop,
     NavBar,
     FooterComp,
   },

@@ -19,12 +19,6 @@ export default {
       //
     };
   },
-  // If not login redirect to login page
-  beforeCreate() {
-    if (this.$store.state.Auth.authIsReady == false) {
-      this.$router.push("/login");
-    }
-  },
   computed: {
     user: function () {
       return this.$store.state.Auth.user;

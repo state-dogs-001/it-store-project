@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import store from "../store";
 
 Vue.use(VueRouter);
 
@@ -16,6 +17,14 @@ const routes = [
     path: "/home",
     name: "Home",
     component: () => import("../views/Home.vue"),
+    beforeEnter: (to, from, next) => {
+      // if login success user can't visit this page
+      if (store.state.Auth.authIsReady) {
+        next({ name: "Products" });
+      } else {
+        next();
+      }
+    },
   },
   {
     path: "/about",
@@ -31,30 +40,148 @@ const routes = [
     path: "/products",
     name: "Products",
     component: () => import("../views/productPage/Products.vue"),
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: () => import("../views/authPage/Login.vue"),
-  },
-  {
-    path: "/register",
-    name: "Register",
-    component: () => import("../views/authPage/Register.vue"),
-  },
-  {
-    path: "/reset_password",
-    name: "ResetPasswprd",
-    component: () => import("../views/authPage/ResetPassword.vue"),
-  },
-  {
-    path: "/test",
-    component: () => import("../views/Test.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
   },
   {
     path: "/search/:id",
     name: "Search",
     component: () => import("../views/productPage/Search.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: () => import("../views/authPage/Login.vue"),
+    beforeEnter: (to, from, next) => {
+      // if login success user can't visit this page
+      if (store.state.Auth.authIsReady) {
+        next({ name: "Products" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: () => import("../views/authPage/Register.vue"),
+    beforeEnter: (to, from, next) => {
+      // if login success user can't visit this page
+      if (store.state.Auth.authIsReady) {
+        next({ name: "Products" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/reset_password",
+    name: "ResetPasswprd",
+    component: () => import("../views/authPage/ResetPassword.vue"),
+    beforeEnter: (to, from, next) => {
+      // if login success user can't visit this page
+      if (store.state.Auth.authIsReady) {
+        next({ name: "Products" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/user",
+    name: "UserSetting",
+    component: () => import("../views/userPage/UserSetting.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/user/basket",
+    name: "Basket",
+    component: () => import("../views/userPage/Basket.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/user/profile",
+    name: "Profile",
+    component: () => import("../views/userPage/UpdateName.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/user/contact",
+    name: "UpdateContact",
+    component: () => import("../views/userPage/UpdateUserContact.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/user/change_password",
+    name: "ChangePassword",
+    component: () => import("../views/userPage/ChangePassword.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/report",
+    name: "Report",
+    component: () => import("../views/userPage/BugReport.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/test",
+    component: () => import("../views/Test.vue"),
   },
 ];
 

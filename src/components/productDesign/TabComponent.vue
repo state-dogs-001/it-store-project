@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-tabs card>
-      <b-tab title="Tab 1" active>
+      <b-tab title="Moblie Phone" active>
         <b-card-text class="mt-4">
           <b-row>
             <b-col lg="4" sm="12" v-for="index in 12" :key="index">
@@ -10,7 +10,7 @@
           </b-row>
         </b-card-text>
       </b-tab>
-      <b-tab title="Tab 2">
+      <b-tab title="Notebook">
         <b-card-text class="mt-4">
           <b-row>
             <b-col lg="4" sm="12" v-for="index in 12" :key="index">
@@ -19,7 +19,7 @@
           </b-row>
         </b-card-text>
       </b-tab>
-      <b-tab title="Tab 3">
+      <b-tab title="Computer Set">
         <b-card-text class="mt-4">
           <b-row>
             <b-col lg="4" sm="12" v-for="index in 12" :key="index">

@@ -12,11 +12,6 @@ export default {
   components: {
     ResetPasswordComp,
   },
-  beforeCreate() {
-    if (this.$store.state.Auth.authIsReady == true) {
-      this.$router.push("/products");
-    }
-  },
 };
 </script>
 

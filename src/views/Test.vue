@@ -34,7 +34,6 @@
             </b-form>
           </b-col>
           <b-col lg="12" class="mt-3 text-center">
-            {{ status }}
             <template v-if="status">
               <div v-for="(read, i) in data" :key="i">
                 <br />

@@ -25,7 +25,7 @@
         <hr />
         <!-- User Setting -->
         <div v-for="item in links" :key="item.name">
-          <b-dropdown-item>
+          <b-dropdown-item :to="item.link">
             <span>{{ item.name }}</span>
           </b-dropdown-item>
         </div>
@@ -48,10 +48,8 @@ export default {
   data() {
     return {
       links: [
-        { icon: " ", name: "โปรไฟล์", link: " " },
-        { icon: " ", name: "ที่อยู่ของฉัน", link: " " },
-        { icon: " ", name: "เปลี่ยนรหัสผ่าน", link: " " },
-        { icon: " ", name: "รายงานปัญหา", link: " " },
+        { icon: " ", name: "ตั้งค่าโปรไฟล์", link: "/user" },
+        { icon: " ", name: "รายงานปัญหา", link: "/report" },
       ],
     };
   },

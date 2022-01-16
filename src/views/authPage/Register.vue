@@ -10,11 +10,6 @@ export default {
   components: {
     RegComp,
   },
-  beforeCreate() {
-    if (this.$store.state.Auth.authIsReady == true) {
-      this.$router.push("/products");
-    }
-  },
 };
 </script>
 
