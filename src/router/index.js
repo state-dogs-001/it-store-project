@@ -39,6 +39,7 @@ const routes = [
   {
     path: "/products",
     name: "Products",
+    redirect: "/products/all",
     component: () => import("../views/productPage/Products.vue"),
     beforeEnter: (to, from, next) => {
       // if user is null redirect to login
@@ -48,6 +49,28 @@ const routes = [
         next();
       }
     },
+    children: [
+      {
+        path: "/products/all",
+        name: "AllProducts",
+        component: () => import("../views/productPage/AllProducts.vue"),
+      },
+      {
+        path: "/products/computers",
+        name: "Computers",
+        component: () => import("../views/productPage/CompProducts.vue"),
+      },
+      {
+        path: "/products/laptops",
+        name: "Laptops",
+        component: () => import("../views/productPage/LaptopProducts.vue"),
+      },
+      {
+        path: "/products/mobiles",
+        name: "Mobiles",
+        component: () => import("../views/productPage/MobileProducts.vue"),
+      },
+    ],
   },
   {
     path: "/search/:id",

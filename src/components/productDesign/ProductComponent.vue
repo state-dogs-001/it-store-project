@@ -10,19 +10,52 @@
           </h1>
           <span> ยินดีตอนรับ {{ userName }} </span>
         </b-col>
-        <!-- Products -->
+
+        <!-- Products Card-->
         <b-col sm="12" lg="12">
           <b-card
-            class="card mb-5"
+            class="card-product mb-5"
             header-tag="header"
             header-bg-variant="dark"
             header-text-variant="white"
-            no-body
           >
+            <!-- Header of Card -->
             <template #header>
-              <h1>เลือกซื้อสินค้า</h1>
+              <b-col lg="12" class="my-2 my-sm-0">
+                <span class="h2">
+                  <!-- Hamburger icon -->
+                  <b-button v-b-toggle.my-collapse variant="outline">
+                    <span class="h3"
+                      ><b-icon icon="list" variant="light"
+                    /></span>
+                  </b-button>
+                  เลือกซื้อสินค้า
+                </span>
+              </b-col>
             </template>
-            <TabComp />
+
+            <!-- List Products -->
+            <b-collapse id="my-collapse">
+              <b-container>
+                <router-link to="/products/all"> สินค้าทั้งหมด </router-link>
+                <br />
+                <router-link to="/products/laptops"> แลปท็อป </router-link>
+                <br />
+                <router-link to="/products/mobiles">
+                  โทรศัพท์มือถือ
+                </router-link>
+                <br />
+                <router-link to="/products/computers">
+                  คอมพิวเตอร์เซ็ต
+                </router-link>
+                <br />
+              </b-container>
+            </b-collapse>
+
+            <!-- Render pager -->
+            <div class="render-products">
+              <router-view />
+            </div>
           </b-card>
         </b-col>
       </b-row>
@@ -31,11 +64,7 @@
 </template>
 
 <script>
-import TabComp from "./TabComponent.vue";
 export default {
-  components: {
-    TabComp,
-  },
   props: {
     userName: String,
   },
@@ -43,16 +72,17 @@ export default {
 </script>
 
 <style>
-.card {
+#my-collapse a {
+  color: rgb(255, 43, 96);
+}
+#my-collapse a:hover {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+}
+.card-product {
+  min-height: 50vh;
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-}
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-.jumbotron-background {
-  background: none;
 }
 .header h1 span {
   color: white;

@@ -6,7 +6,7 @@
       img-top
       tag="article"
       style="max-width: 18rem"
-      class="card mb-5"
+      class="card-image"
     >
       <b-card-text> Prics = 10$ </b-card-text>
 
@@ -21,23 +21,19 @@ export default {};
 </script>
 
 <style>
-.card {
-  margin: 0 auto; /* Added */
-  float: none; /* Added */
-  margin-bottom: 100px; /* Added */
+.card-image {
+  margin: 0 auto;
+  float: none;
   overflow: hidden;
-  transform: 0.3s;
-}
-.card:hover {
   box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.2);
 }
-.card img {
+.card-image img {
   width: 18rem;
   height: 10rem;
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;
 }
-.card img:hover {
+.card-image img:hover {
   -webkit-transform: scale(1.08);
   transform: scale(1.08);
 }
