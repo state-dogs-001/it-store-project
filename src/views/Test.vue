@@ -38,6 +38,15 @@
               <div v-for="(read, i) in data" :key="i">
                 <br />
                 <h4>{{ read.text }}</h4>
+                <p>{{ read.time.toDate().toDateString() }}</p>
+                <p>
+                  Time:
+                  {{
+                    read.time.toDate().getHours() +
+                    ":" +
+                    read.time.toDate().getMinutes()
+                  }}
+                </p>
                 <br />
                 <b-row>
                   <!-- delete -->

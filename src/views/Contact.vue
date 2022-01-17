@@ -11,23 +11,23 @@
           <h1>ผู้จัดทำ</h1>
         </template>
         <b-row>
-          <b-col lg="6" sm="12" class="myImage my-3 text-center">
+          <b-col lg="4" sm="12" class="myImage my-3 text-center">
             <b-img :src="myImg" rounded="circle" />
           </b-col>
-          <b-col lg="6" sm="12" class="my-3">
+          <b-col lg="8" sm="12" class="my-3">
             <h3>ชื่อผู้จัดทำ</h3>
             <p>นายจารุวัฒน์ แต่งนวล ชื่อเล่น อาร์ม</p>
+            <br />
             <h3>ประวัติส่วนตัว</h3>
             <p>นักศึกษาวิชาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 3</p>
             <p>มหาวิทยาลัยแม่โจ้</p>
-            <iframe
+            <b-embed
+              type="iframe"
+              aspect="16by9"
               :src="mjuMap"
-              width="340"
-              height="300"
-              style="border: 0"
-              allowfullscreen=""
-              loading="lazy"
-            ></iframe>
+              allowfullscreen
+            ></b-embed>
+            <br />
             <h3>ช่องทางการติดต่อ</h3>
             <p>Facebook</p>
             <p>Instagram</p>

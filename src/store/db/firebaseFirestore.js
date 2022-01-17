@@ -9,6 +9,7 @@ import {
   query,
   onSnapshot,
   addDoc,
+  Timestamp,
   doc,
   updateDoc,
   deleteDoc,
@@ -77,6 +78,7 @@ const actions = {
   async addData({ commit }, text) {
     await addDoc(collection(db, "test"), {
       text: text,
+      time: Timestamp.now(),
     });
     commit("setAddStatus", true);
     setTimeout(() => {
@@ -87,7 +89,10 @@ const actions = {
   // upadete data
   async updateData({ commit }, { id, text }) {
     const ref = doc(db, "test", id);
-    await updateDoc(ref, { text: text });
+    await updateDoc(ref, {
+      text: text,
+      time: Timestamp.now(),
+    });
     commit("setupdateStatus", true);
     setTimeout(() => {
       commit("setupdateStatus", false);

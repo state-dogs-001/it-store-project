@@ -33,22 +33,24 @@
                 </span>
               </b-col>
             </template>
-
             <!-- List Products -->
-            <b-collapse id="my-collapse">
+            <b-collapse id="my-collapse" class="mb-5">
               <b-container>
-                <router-link to="/products/all"> สินค้าทั้งหมด </router-link>
-                <br />
-                <router-link to="/products/laptops"> แลปท็อป </router-link>
-                <br />
-                <router-link to="/products/mobiles">
-                  โทรศัพท์มือถือ
-                </router-link>
-                <br />
-                <router-link to="/products/computers">
-                  คอมพิวเตอร์เซ็ต
-                </router-link>
-                <br />
+                <b-col v-if="pathName != 'AllProducts'">
+                  <a href="/products/all"> สินค้าทั้งหมด </a>
+                </b-col>
+
+                <b-col v-if="pathName != 'Mobiles'">
+                  <a href="/products/mobiles"> โทรศัพท์มือถือ </a>
+                </b-col>
+
+                <b-col v-if="pathName != 'Laptops'">
+                  <a href="/products/laptops"> แล็ปท็อป </a>
+                </b-col>
+
+                <b-col v-if="pathName != 'Computers'">
+                  <a href="/products/computers"> คอมพิวเตอร์เซ็ต </a>
+                </b-col>
               </b-container>
             </b-collapse>
 
@@ -67,6 +69,11 @@
 export default {
   props: {
     userName: String,
+  },
+  data() {
+    return {
+      pathName: this.$route.name,
+    };
   },
 };
 </script>

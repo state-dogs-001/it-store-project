@@ -22,6 +22,7 @@ export default {};
 
 <style>
 .card-image {
+  border: none;
   margin: 0 auto;
   float: none;
   overflow: hidden;

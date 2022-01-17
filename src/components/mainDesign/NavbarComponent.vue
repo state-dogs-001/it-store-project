@@ -19,7 +19,7 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/products">เลือกซื้อสินค้า</b-nav-item>
+          <b-nav-item to="/products">ดูสินค้าทั้งหมด</b-nav-item>
           <b-nav-item to="/about">เกี่ยวกับ</b-nav-item>
           <b-nav-item to="/contact">ติดต่อ</b-nav-item>
         </b-navbar-nav>
