@@ -18,7 +18,7 @@
         <hr />
       </b-col>
       <b-col class="my-4" lg="4" sm="6" v-for="mi in 5" :key="mi">
-        <CardComp />
+        <CardComp title="Mobile Product" />
       </b-col>
       <b-col class="my-4 text-center" lg="4" sm="6">
         <a href="/products/mobiles" class="card-a">
@@ -36,7 +36,7 @@
         <hr />
       </b-col>
       <b-col class="my-4" lg="4" sm="6" v-for="li in 5" :key="li">
-        <CardComp />
+        <CardComp title="Laptop Product" />
       </b-col>
       <b-col class="my-4 text-center" lg="4" sm="6">
         <a href="/products/laptops" class="card-a">
@@ -54,7 +54,7 @@
         <hr />
       </b-col>
       <b-col class="my-4" lg="4" sm="6" v-for="ci in 5" :key="ci">
-        <CardComp />
+        <CardComp title="Computer Product" />
       </b-col>
       <b-col class="my-4 text-center" lg="4" sm="6">
         <a href="/products/computers" class="card-a">

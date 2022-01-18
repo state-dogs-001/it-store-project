@@ -151,7 +151,7 @@ const routes = [
     },
   },
   {
-    path: "/user/profile",
+    path: "/user/update_name",
     name: "Profile",
     component: () => import("../views/userPage/UpdateName.vue"),
     beforeEnter: (to, from, next) => {
@@ -164,9 +164,22 @@ const routes = [
     },
   },
   {
-    path: "/user/contact",
-    name: "UpdateContact",
-    component: () => import("../views/userPage/UpdateUserContact.vue"),
+    path: "/user/update_location",
+    name: "UpdateLocation",
+    component: () => import("../views/userPage/UpdateUserLocation.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/user/update_tel",
+    name: "UpdatePhoneNumber",
+    component: () => import("../views/userPage/UpdateUserTel.vue"),
     beforeEnter: (to, from, next) => {
       // if user is null redirect to login
       if (!store.state.Auth.authIsReady) {

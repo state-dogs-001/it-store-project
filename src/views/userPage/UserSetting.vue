@@ -14,17 +14,17 @@
 
         <!-- Left position is menu setting -->
         <!-- Right position is show -->
-        <b-tabs card pills vertical>
+        <b-tabs card pills :vertical="statusVertical">
           <b-tab title="หน้าโปรไฟล์" active>
-            <b-card-text>แก้ไขโปรไฟล์</b-card-text>
-          </b-tab>
-
-          <b-tab title="ข้อมูลที่อยู่">
-            <b-card-text>ที่อยู่ และ เบอร์โทร</b-card-text>
+            <b-card-text class="card-text-size">
+              <ProfileComp />
+            </b-card-text>
           </b-tab>
 
           <b-tab title="ความปลอดภัย">
-            <b-card-text>อัปเดต Password</b-card-text>
+            <b-card-text class="card-text-size">
+              <SecureComp />
+            </b-card-text>
           </b-tab>
         </b-tabs>
 
@@ -35,7 +35,40 @@
 </template>
 
 <script>
-export default {};
+import ProfileComp from "../../components/userPageDesign/UserSettingComponent/ProfileComponent.vue";
+import SecureComp from "../../components/userPageDesign/UserSettingComponent/SecureComponent.vue";
+
+export default {
+  components: {
+    ProfileComp,
+    SecureComp,
+  },
+  data() {
+    return {
+      statusVertical: true,
+    };
+  },
+  mounted() {
+    const pageY = window.screen.width;
+    if (pageY <= 770) {
+      this.statusVertical = false;
+    }
+
+    this.resizePage();
+  },
+  methods: {
+    resizePage() {
+      window.addEventListener("resize", () => {
+        let pageYResize = window.innerWidth;
+        if (pageYResize <= 770) {
+          this.statusVertical = false;
+        } else {
+          this.statusVertical = true;
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style>
@@ -47,6 +80,17 @@ export default {};
 }
 .nav-pills {
   min-height: 30rem;
+}
+.card-text-size {
+  min-height: auto;
+}
+@media (max-width: 770px) {
+  .nav-pills {
+    min-height: auto;
+  }
+  .card-text-size {
+    min-height: 10rem;
+  }
 }
 .nav-pills .nav-link:not(.active) {
   background-color: none;

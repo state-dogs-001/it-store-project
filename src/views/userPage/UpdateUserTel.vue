@@ -8,7 +8,7 @@
         header-text-variant="light"
       >
         <template #header>
-          <h1>ข้อมูลการติดต่อ</h1>
+          <h2>อัปเดตเบอร์โทร</h2>
         </template>
       </b-card>
     </b-container>

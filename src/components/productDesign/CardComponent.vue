@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card
-      title="Card Title"
+      :title="title"
       img-src="https://wallpapermemory.com/uploads/688/patrick-star-background-hd-2880x1800-135702.jpg"
       img-top
       tag="article"
@@ -17,7 +17,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    title: String,
+  },
+};
 </script>
 
 <style>
