@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -46,8 +47,13 @@ export default {
     };
   },
   methods: {
-    send() {
-      //
+    ...mapActions(["userReport"]),
+    async send() {
+      try {
+        await this.userReport(this.reportText);
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };

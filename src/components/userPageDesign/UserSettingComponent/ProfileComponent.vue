@@ -26,7 +26,21 @@
         </tr>
         <tr>
           <td>ที่อยู่</td>
-          <td>Thailand</td>
+          <template v-if="location.length > 0">
+            <td>
+              <div v-for="read in location" :key="read.user_zipcode">
+                ต.{{ read.user_subdistrict }} อ.{{ read.user_district }} จ.{{
+                  read.user_province
+                }}
+                รหัสไปรษณีย์ {{ read.user_zipcode }}
+              </div>
+            </td>
+          </template>
+          <template v-else>
+            <td>
+              <span style="color: rgb(255, 43, 96)">ยังไม่ได้เพิ่มที่อยู่</span>
+            </td>
+          </template>
           <td class="text-right">
             <a href="/user/update_location">อัปเดตที่อยู่ ></a>
           </td>
@@ -72,15 +86,27 @@ export default {
     telNumber: function () {
       return this.$store.state.UserDB.userTelNumber;
     },
+    location: function () {
+      return this.$store.state.UserDB.userLocation;
+    },
   },
   created() {
     this.getTel();
+    this.getLocation();
   },
   methods: {
     ...mapActions(["getUserTelNumber"]),
     async getTel() {
       try {
         await this.getUserTelNumber();
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    ...mapActions(["getUserLocation"]),
+    async getLocation() {
+      try {
+        await this.getUserLocation();
       } catch (err) {
         console.log(err);
       }

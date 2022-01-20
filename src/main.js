@@ -13,6 +13,11 @@ import "bootstrap-vue/dist/bootstrap-vue.css";
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
+import VueThailandAddress from "vue-thailand-address";
+import "vue-thailand-address/dist/vue-thailand-address.css";
+
+Vue.use(VueThailandAddress);
+
 Vue.config.productionTip = false;
 Vue.config.devtools = false;
 
