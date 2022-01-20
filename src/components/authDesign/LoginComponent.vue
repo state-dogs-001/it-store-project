@@ -31,7 +31,7 @@
 
       <!-- Card form login -->
       <b-card
-        class="card mt-5 mb-2"
+        class="card-login mt-5 mb-2"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="white"
@@ -70,13 +70,13 @@
               />
             </b-col>
             <!-- Link to register page -->
-            <b-col lg="12" class="text-right">
+            <b-col lg="12" class="text-right link-color">
               <router-link to="/register">
                 <span>หากยังไม่ได้สมัครสมาชิก?</span>
               </router-link>
             </b-col>
             <!-- Link to reset password page -->
-            <b-col lg="12" class="text-right">
+            <b-col lg="12" class="text-right link-color">
               <router-link to="/reset_password">
                 <span>หากลืมรหัสผ่าน?</span>
               </router-link>
@@ -198,13 +198,16 @@ export default {
 </script>
 
 <style>
-.card {
+.card-login {
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
 }
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+.link-color a {
+  color: black;
+}
+.link-color a:hover {
+  text-decoration: none;
+  color: rgb(255, 43, 96);
 }
 .separator {
   display: flex;

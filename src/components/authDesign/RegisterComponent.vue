@@ -31,7 +31,7 @@
 
       <!-- Card form register -->
       <b-card
-        class="card mt-5 mb-2"
+        class="card-reg mt-5 mb-2"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="white"
@@ -115,7 +115,7 @@
               />
             </b-col>
             <!-- Link to login page -->
-            <b-col lg="12" class="text-right my-2">
+            <b-col lg="12" class="text-right my-2 link-color">
               <router-link to="/login">
                 <span>หากเป็นสมาชิกอยู่แล้ว</span>
               </router-link>
@@ -144,6 +144,7 @@ export default {
       email: null,
       password: null,
       password_confirm: null,
+
       error: null,
 
       // Alert Countdown Attributes
@@ -192,12 +193,15 @@ export default {
 </script>
 
 <style>
-.card {
+.card-reg {
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
 }
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+.link-color a {
+  color: black;
+}
+.link-color a:hover {
+  text-decoration: none;
+  color: rgb(255, 43, 96);
 }
 </style>

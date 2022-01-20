@@ -32,7 +32,7 @@
 
       <!-- Card form reset password -->
       <b-card
-        class="card mt-5 mb-4"
+        class="card-reset mt-5 mb-4"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="white"
@@ -57,7 +57,7 @@
               />
             </b-col>
             <!-- Login link -->
-            <b-col lg="12" class="my-2 text-right">
+            <b-col lg="12" class="my-2 text-right link-color">
               <router-link to="/login">กลับไปยังหน้าเข้าสู่ระบบ</router-link>
             </b-col>
             <!-- Button -->
@@ -125,12 +125,15 @@ export default {
 </script>
 
 <style>
-.card {
+.card-reset {
   border: none;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
 }
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+.link-color a {
+  color: black;
+}
+.link-color a:hover {
+  text-decoration: none;
+  color: rgb(255, 43, 96);
 }
 </style>

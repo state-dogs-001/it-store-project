@@ -10,6 +10,7 @@ import {
   signInWithEmailAndPassword, // Login
   onAuthStateChanged, // Status of user
   sendPasswordResetEmail, // Reset Password
+  updatePassword, // Update Password
   // Use for google signin
   signInWithPopup,
   GoogleAuthProvider,
@@ -22,6 +23,8 @@ const state = {
   user: null,
   authIsReady: false,
   sendPasswordEmailStatus: false,
+  updatePasswordStatus: false,
+  updateNameStatus: false,
 };
 
 const actions = {
@@ -90,11 +93,29 @@ const actions = {
     store.commit("setAuthIsReady", false);
   },
 
-  // Reset Password
+  // Reset Password With email
   async resetpassword(context, { email }) {
     console.log("Reset Password Action");
     await sendPasswordResetEmail(auth, email);
     context.commit("setSendPasswordEmailStatus", true);
+  },
+
+  // Update Password
+  async updatepassword(context, password) {
+    console.log("Update Password");
+    const user = auth.currentUser;
+    await updatePassword(user, password);
+    context.commit("setUpdatePasswordStatus", true);
+  },
+
+  // Upadete displayName
+  async updateDisplayName(context, name) {
+    console.log("Update Name");
+    const user = auth.currentUser;
+    await updateProfile(user, {
+      displayName: name,
+    });
+    context.commit("setUpdateNameStatus", true);
   },
 };
 
@@ -105,11 +126,19 @@ const mutations = {
   },
   setAuthIsReady(state, payload) {
     state.authIsReady = payload;
-    console.log("User status", state.authIsReady);
+    console.log("User status ", state.authIsReady);
   },
-  setSendPasswordEmailStatus(state, payload) {
-    state.sendPasswordEmailStatus = payload;
-    console.log("Send Email", state.sendPasswordEmailStatus);
+  setSendPasswordEmailStatus(state, status) {
+    state.sendPasswordEmailStatus = status;
+    console.log("Send Email ", state.sendPasswordEmailStatus);
+  },
+  setUpdatePasswordStatus(state, status) {
+    state.updatePasswordStatus = status;
+    console.log("Update Password ", state.updatePasswordStatus);
+  },
+  setUpdateNameStatus(state, status) {
+    state.updateNameStatus = status;
+    console.log("Update Name ", state.updateNameStatus);
   },
 };
 

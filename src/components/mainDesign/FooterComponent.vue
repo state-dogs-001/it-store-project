@@ -112,7 +112,7 @@ export default {};
 .footer-links a:active,
 .footer-links a:focus,
 .footer-links a:hover {
-  color: #ff0000;
+  color: rgb(255, 43, 96);
   text-decoration: none;
 }
 .footer-links.inline li {
@@ -208,5 +208,9 @@ export default {};
 }
 .router-color {
   color: white;
+}
+.router-color:hover {
+  text-decoration: none;
+  color: rgb(255, 43, 96);
 }
 </style>

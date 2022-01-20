@@ -33,14 +33,26 @@
         </tr>
         <tr>
           <td>เบอร์โทรศัพท์</td>
-          <td>+66</td>
+          <template v-if="telNumber.length > 0">
+            <td>+66 {{ telNumber[0].tel_number }}</td>
+          </template>
+          <template v-else>
+            <td>
+              +66
+              <span style="color: rgb(255, 43, 96)"
+                >ยังไม่ได้เพิ่มเบอร์โทรติดต่อ</span
+              >
+            </td>
+          </template>
           <td class="text-right">
             <a href="/user/update_tel">อัปเดตเบอร์โทรศัพท์ ></a>
           </td>
         </tr>
         <tr>
           <td>วันที่ใช้บริการ</td>
-          <td colspan="2">xxxx-xx-xx</td>
+          <template v-if="user.metadata">
+            <td colspan="2">{{ user.metadata.creationTime }}</td>
+          </template>
         </tr>
       </tbody>
     </table>
@@ -48,6 +60,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   computed: {
     user: function () {
@@ -55,6 +68,22 @@ export default {
     },
     status_user: function () {
       return this.$store.state.Auth.authIsReady;
+    },
+    telNumber: function () {
+      return this.$store.state.UserDB.userTelNumber;
+    },
+  },
+  created() {
+    this.getTel();
+  },
+  methods: {
+    ...mapActions(["getUserTelNumber"]),
+    async getTel() {
+      try {
+        await this.getUserTelNumber();
+      } catch (err) {
+        console.log(err);
+      }
     },
   },
 };
