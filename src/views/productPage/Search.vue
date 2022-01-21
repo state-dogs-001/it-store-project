@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <b-card
-        class="mt-5 mb-3"
+        class="mt-5 mb-3 card-search"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="white"
@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style>
-.card {
+.card-search {
   border: none;
 }
 </style>

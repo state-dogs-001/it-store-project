@@ -30,7 +30,7 @@
       </b-alert>
 
       <b-card
-        class="mt-5"
+        class="mt-5 card-update-location"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="light"
@@ -41,6 +41,18 @@
         <b-form @submit.stop.prevent="update">
           <b-row>
             <div class="box">
+              <b-col lg="12">
+                <label for="more_location">
+                  บ้านเลขที่ ซอย หมู่ ถนน ชื่ออพาร์ทเม้นท์
+                </label>
+                <input
+                  type="text"
+                  id="more_location"
+                  v-model="more_location"
+                  required
+                  class="form-control auto-location"
+                />
+              </b-col>
               <b-col lg="12">
                 <!-- ตำบล/แขวง -->
                 <addressinput-subdistrict
@@ -73,6 +85,9 @@
                   required
                 />
               </b-col>
+              <b-col lg="12" class="text-right mt-3 link-color">
+                <router-link to="/user">กลับไปหน้าตั้งค่าโปรไฟล์</router-link>
+              </b-col>
             </div>
             <b-col lg="12" class="text-center mt-5">
               <input type="reset" value="Cancel" class="btn btn-danger mr-3" />
@@ -94,6 +109,7 @@ export default {
       district: "",
       province: "",
       zipcode: "",
+      more_location: "",
 
       error: null,
 
@@ -112,6 +128,7 @@ export default {
           user_district: this.district,
           user_province: this.province,
           user_zipcode: this.zipcode,
+          user_more_location: this.more_location,
         };
         await this.updateLocation(location);
         // Set Statatus of showSuccessAlert to show alert
@@ -126,12 +143,17 @@ export default {
         this.error = err.message;
       }
     },
+
+    // Count Down Alert
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
   },
 };
 </script>
 
 <style>
-.card {
+.card-update-location {
   border: none;
 }
 .box {
@@ -148,5 +170,12 @@ export default {
   .box .auto-location {
     width: auto;
   }
+}
+.link-color a {
+  color: black;
+}
+.link-color a:hover {
+  text-decoration: none;
+  color: rgb(255, 43, 96);
 }
 </style>

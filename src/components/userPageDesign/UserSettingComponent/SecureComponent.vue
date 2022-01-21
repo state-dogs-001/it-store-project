@@ -13,7 +13,9 @@
           <td>รหัสผ่าน</td>
           <td>••••••••••••</td>
           <td class="text-right">
-            <a href="/user/change_password">เปลี่ยนรหัสผ่าน ></a>
+            <router-link to="/user/change_password">
+              เปลี่ยนรหัสผ่าน >
+            </router-link>
           </td>
         </tr>
       </tbody>

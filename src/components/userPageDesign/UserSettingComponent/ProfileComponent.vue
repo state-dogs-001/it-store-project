@@ -15,7 +15,7 @@
             <td>{{ user.displayName }}</td>
           </template>
           <td class="text-right">
-            <a href="/user/update_name">อัปเดตชื่อ ></a>
+            <router-link to="/user/update_name">อัปเดตชื่อ ></router-link>
           </td>
         </tr>
         <tr>
@@ -29,6 +29,7 @@
           <template v-if="location.length > 0">
             <td>
               <div v-for="read in location" :key="read.user_zipcode">
+                {{ read.user_more_location }}
                 ต.{{ read.user_subdistrict }} อ.{{ read.user_district }} จ.{{
                   read.user_province
                 }}
@@ -42,7 +43,9 @@
             </td>
           </template>
           <td class="text-right">
-            <a href="/user/update_location">อัปเดตที่อยู่ ></a>
+            <router-link to="/user/update_location">
+              อัปเดตที่อยู่ >
+            </router-link>
           </td>
         </tr>
         <tr>
@@ -59,7 +62,9 @@
             </td>
           </template>
           <td class="text-right">
-            <a href="/user/update_tel">อัปเดตเบอร์โทรศัพท์ ></a>
+            <router-link to="/user/update_tel">
+              อัปเดตเบอร์โทรศัพท์ >
+            </router-link>
           </td>
         </tr>
         <tr>

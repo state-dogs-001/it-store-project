@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <b-card
-        class="mt-5"
+        class="mt-5 card-basket"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="light"
@@ -20,7 +20,7 @@ export default {};
 </script>
 
 <style>
-.card {
+.card-basket {
   border: none;
 }
 </style>

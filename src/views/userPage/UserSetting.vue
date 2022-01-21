@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <b-card
-        class="my-5"
+        class="card-user-setting my-5"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="light"
@@ -27,8 +27,6 @@
             </b-card-text>
           </b-tab>
         </b-tabs>
-
-        <router-view />
       </b-card>
     </b-container>
   </div>
@@ -72,7 +70,7 @@ export default {
 </script>
 
 <style>
-.card {
+.card-user-setting {
   border: none;
 }
 .nav-pills a {

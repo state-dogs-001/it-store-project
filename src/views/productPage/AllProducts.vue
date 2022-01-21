@@ -20,8 +20,8 @@
       <b-col class="my-4" lg="4" sm="6" v-for="mi in 5" :key="mi">
         <CardComp title="Mobile Product" />
       </b-col>
-      <b-col class="my-4 text-center" lg="4" sm="6">
-        <a href="/products/mobiles" class="card-a">
+      <b-col class="my-4 text-center card-a" lg="4" sm="6">
+        <a href="/products/mobiles">
           <b-card class="card-more">
             <h1><i class="fas fa-door-open"></i></h1>
             <h4>ดูสินค้าเพิ่มเติม</h4>
@@ -38,8 +38,8 @@
       <b-col class="my-4" lg="4" sm="6" v-for="li in 5" :key="li">
         <CardComp title="Laptop Product" />
       </b-col>
-      <b-col class="my-4 text-center" lg="4" sm="6">
-        <a href="/products/laptops" class="card-a">
+      <b-col class="my-4 text-center card-a" lg="4" sm="6">
+        <a href="/products/laptops">
           <b-card class="card-more">
             <h1><i class="fas fa-door-open"></i></h1>
             <h4>ดูสินค้าเพิ่มเติม</h4>
@@ -56,8 +56,8 @@
       <b-col class="my-4" lg="4" sm="6" v-for="ci in 5" :key="ci">
         <CardComp title="Computer Product" />
       </b-col>
-      <b-col class="my-4 text-center" lg="4" sm="6">
-        <a href="/products/computers" class="card-a">
+      <b-col class="my-4 text-center card-a" lg="4" sm="6">
+        <a href="/products/computers">
           <b-card class="card-more">
             <h1><i class="fas fa-door-open"></i></h1>
             <h4>ดูสินค้าเพิ่มเติม</h4>
@@ -74,23 +74,6 @@ import CardComp from "../../components/productDesign/CardComponent.vue";
 export default {
   components: {
     CardComp,
-  },
-  data() {
-    return {
-      acerLogo:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Acer_2011.svg/1200px-Acer_2011.svg.png",
-      appleLogo:
-        "https://www.freepnglogos.com/uploads/apple-logo-png/apple-logo-png-dallas-shootings-don-add-are-speech-zones-used-4.png",
-      asusLogo:
-        "https://www.pngplay.com/wp-content/uploads/13/Asus-Logo-Transparent-Image.png",
-      dellLogo:
-        "https://www.pngplay.com/wp-content/uploads/7/Dell-Transparent-File.png",
-      hpLogo: "https://inwfile.com/s-fk/33804j.png",
-      samsungLogo:
-        "http://pngimg.com/uploads/samsung_logo/samsung_logo_PNG14.png",
-      xiaomiLogo:
-        "https://logos-download.com/wp-content/uploads/2016/05/Xiaomi_Logo_2019.png",
-    };
   },
   mounted() {
     // Use for smooth scroll a href to id
@@ -121,10 +104,10 @@ export default {
   text-decoration: none;
   color: rgb(255, 43, 96);
 }
-.card-a {
+.card-a a {
   color: black;
 }
-.card-a:hover {
+.card-a a:hover {
   text-decoration: none;
 }
 .card-a .card-more {

@@ -14,11 +14,6 @@ export default {
   components: {
     ProductComp,
   },
-  data() {
-    return {
-      //
-    };
-  },
   computed: {
     user: function () {
       return this.$store.state.Auth.user;

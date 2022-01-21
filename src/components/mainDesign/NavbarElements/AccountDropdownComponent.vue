@@ -26,9 +26,15 @@
         <!-- User Setting -->
         <div v-for="item in links" :key="item.name">
           <b-dropdown-item :to="item.link">
-            <span>{{ item.name }}</span>
+            <p>{{ item.name }} <b-icon :icon="item.icon" /></p>
           </b-dropdown-item>
         </div>
+        <!-- Admin Setting -->
+        <template>
+          <b-dropdown-item to="/dashboard">
+            <p>หน้าจัดการสินค้า</p>
+          </b-dropdown-item>
+        </template>
         <hr />
         <b-dropdown-item @click="signOut">
           <b-button variant="danger" size="sm">
@@ -48,8 +54,8 @@ export default {
   data() {
     return {
       links: [
-        { icon: " ", name: "ตั้งค่าโปรไฟล์", link: "/user" },
-        { icon: " ", name: "รายงานปัญหา", link: "/report" },
+        { icon: "gear", name: "ตั้งค่าโปรไฟล์", link: "/user" },
+        { icon: "bug-fill", name: "รายงานปัญหา", link: "/report" },
       ],
     };
   },

@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <b-card
-        class="mt-5 mb-3"
+        class="mt-5 mb-3 card-about"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="white"
@@ -53,7 +53,7 @@ export default {
 </script>
 
 <style>
-.card {
+.card-about {
   border: none;
 }
 a {

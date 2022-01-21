@@ -30,7 +30,7 @@
       </b-alert>
 
       <b-card
-        class="mt-5"
+        class="mt-5 card-change-password"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="light"
@@ -117,12 +117,17 @@ export default {
         console.log("Password not match");
       }
     },
+
+    // Count Down Alert
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
   },
 };
 </script>
 
 <style>
-.card {
+.card-change-password {
   border: none;
 }
 </style>

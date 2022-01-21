@@ -5,7 +5,7 @@
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="white"
-        class="mt-5"
+        class="mt-5 card-notfound"
       >
         <template #header>
           <h2>PAGE NOT FOUND <b-icon icon="x-octagon-fill" /></h2>
@@ -27,7 +27,7 @@ export default {};
 </script>
 
 <style>
-.card {
+.card-notfound {
   border: none;
 }
 img {

@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <b-card
-        class="mt-5 mb-5"
+        class="mt-5 mb-5 card-contact"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="white"
@@ -20,7 +20,7 @@
             <br />
             <h3>ประวัติส่วนตัว</h3>
             <p>นักศึกษาวิชาวิทยาการคอมพิวเตอร์ ชั้นปีที่ 3</p>
-            <p>มหาวิทยาลัยแม่โจ้</p>
+            <p>มหาวิทยาลัยแม่โจ้ <b-icon icon="geo-alt" /></p>
             <b-embed
               type="iframe"
               aspect="16by9"
@@ -29,10 +29,36 @@
             ></b-embed>
             <br />
             <h3>ช่องทางการติดต่อ</h3>
-            <p>Facebook</p>
-            <p>Instagram</p>
-            <p>Twitter</p>
-            <p>Github</p>
+            <div class="link-contact">
+              <a
+                href="https://www.facebook.com/arm53797/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Facebook <i class="fab fa-facebook"></i>
+              </a>
+              <a
+                href="https://www.instagram.com/9_arm_jaruwat/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Instagram <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                href="https://twitter.com/JTaengnuan"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Twitter <i class="fab fa-twitter"></i>
+              </a>
+              <a
+                href="https://github.com/state-dogs-001"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Github <i class="fab fa-github"></i>
+              </a>
+            </div>
           </b-col>
         </b-row>
       </b-card>
@@ -54,13 +80,23 @@ export default {
 </script>
 
 <style>
-.card {
+.card-contact {
   border: none;
 }
-.myImage {
-  overflow: hidden;
-}
 .myImage img {
-  max-width: 20rem;
+  max-width: 15rem;
+}
+.link-contact a {
+  color: black;
+  margin-right: 10px;
+}
+.link-contact a:hover {
+  text-decoration: none;
+  color: rgb(255, 43, 96);
+}
+@media (max-width: 770px) {
+  .myImage img {
+    max-width: 10rem;
+  }
 }
 </style>

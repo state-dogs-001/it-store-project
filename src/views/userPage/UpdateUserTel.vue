@@ -159,6 +159,11 @@ export default {
         this.error = err.message;
       }
     },
+
+    // Count Down Alert
+    countDownChanged(dismissCountDown) {
+      this.dismissCountDown = dismissCountDown;
+    },
   },
 };
 </script>
