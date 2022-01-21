@@ -123,6 +123,7 @@ export default {
       // Login Attributes
       email: null,
       password: null,
+
       error: null,
 
       // Alert Countdown Attributes
@@ -142,7 +143,7 @@ export default {
         });
         // Set Statatus of showSuccessAlert to show alert
         this.showSuccessAlert = true;
-        // Set time to redirect to home page 2 sec.
+        // Set time to redirect to product page in 2 sec.
         setTimeout(() => {
           this.$router.push("/products");
         }, 2000);

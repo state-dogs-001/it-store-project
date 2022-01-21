@@ -104,9 +104,9 @@ export default {
           await this.updatepassword(this.password);
           // Set Statatus of showSuccessAlert to show alert
           this.showSuccessAlert = true;
-          // Set time to redirect to home page 2 sec.
+          // Set time to redirect to user page in 2 sec.
           setTimeout(() => {
-            this.$router.push("/products");
+            this.$router.push("/user");
           }, 2000);
         } catch (err) {
           // Show alert when login failed

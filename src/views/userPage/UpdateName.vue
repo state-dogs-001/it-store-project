@@ -1,6 +1,34 @@
 <template>
   <div>
     <b-container>
+      <!-- Alert when progress failed -->
+      <b-alert
+        :show="dismissCountDown"
+        dismissible
+        variant="danger"
+        class="mt-3"
+        @dismissed="dismissCountDown = 0"
+        @dismiss-count-down="countDownChanged"
+      >
+        <p>{{ error }}</p>
+        <b-progress
+          variant="danger"
+          :max="dismissSecs"
+          :value="dismissCountDown"
+          height="4px"
+        ></b-progress>
+      </b-alert>
+
+      <!-- Alert when success -->
+      <b-alert
+        v-model="showSuccessAlert"
+        variant="success"
+        class="mt-3"
+        dismissible
+      >
+        อัปเดตสำเร็จ กรุณารอสักครู่...
+      </b-alert>
+
       <b-card
         class="mt-5 card-update-name"
         header-tag="header"
@@ -60,6 +88,13 @@ export default {
     return {
       firstName: null,
       lastName: null,
+
+      error: null,
+
+      // Alert Countdown Attributes
+      dismissSecs: 10,
+      dismissCountDown: 0,
+      showSuccessAlert: false, // for success alert
     };
   },
   methods: {
@@ -68,8 +103,16 @@ export default {
       const name = this.firstName + " " + this.lastName;
       try {
         await this.updateDisplayName(name);
+        // Set Statatus of showSuccessAlert to show alert
+        this.showSuccessAlert = true;
+        // Set time to redirect to user page in 2 sec.
+        setTimeout(() => {
+          this.$router.push("/user");
+        }, 2000);
       } catch (err) {
-        console.log(err);
+        // Show alert when login failed
+        this.dismissCountDown = this.dismissSecs;
+        this.error = err.message;
       }
     },
   },
