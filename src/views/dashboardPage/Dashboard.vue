@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <b-card
-        class="card-dashboard mt-5"
+        class="card-dashboard mt-5 mb-4"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="light"
@@ -17,12 +17,7 @@
         <b-tabs card pills :vertical="statusVertical">
           <b-tab title="จัดการสินค้า" active>
             <b-card-text class="card-text-size">
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Eligendi itaque voluptas unde quod quis et, id molestiae,
-                pariatur ipsa voluptate delectus ex exercitationem sint odit
-                quas eveniet cupiditate in? Blanditiis?
-              </p>
+              <ProductManage />
             </b-card-text>
           </b-tab>
 
@@ -54,7 +49,12 @@
 </template>
 
 <script>
+import ProductManage from "../../components/AdminPageDesign/ProductManagement.vue";
+
 export default {
+  components: {
+    ProductManage,
+  },
   data() {
     return {
       statusVertical: true,
