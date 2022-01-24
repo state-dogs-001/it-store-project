@@ -21,17 +21,13 @@
           >
             <!-- Header of Card -->
             <template #header>
-              <b-col lg="12" class="my-2 my-sm-0">
-                <span class="h2">
-                  <!-- Hamburger icon -->
-                  <b-button v-b-toggle.my-collapse variant="outline">
-                    <span class="h3"
-                      ><b-icon icon="list" variant="light"
-                    /></span>
-                  </b-button>
-                  เลือกซื้อสินค้า
-                </span>
-              </b-col>
+              <span class="h2">
+                <!-- Hamburger icon -->
+                <b-button v-b-toggle.my-collapse variant="outline">
+                  <span class="h3"><b-icon icon="list" variant="light" /></span>
+                </b-button>
+                เลือกซื้อสินค้า
+              </span>
             </template>
             <!-- List Products -->
             <b-collapse id="my-collapse" class="mb-5">

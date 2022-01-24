@@ -62,7 +62,7 @@ export default {
   },
   mounted() {
     const pageY = window.screen.width;
-    if (pageY <= 770) {
+    if (pageY <= 1200) {
       this.statusVertical = false;
     }
 
@@ -72,7 +72,7 @@ export default {
     resizePage() {
       window.addEventListener("resize", () => {
         let pageYResize = window.innerWidth;
-        if (pageYResize <= 770) {
+        if (pageYResize <= 1200) {
           this.statusVertical = false;
         } else {
           this.statusVertical = true;
@@ -96,7 +96,7 @@ export default {
 .card-text-size {
   min-height: auto;
 }
-@media (max-width: 770px) {
+@media (max-width: 1200px) {
   .nav-pills {
     min-height: auto;
   }
