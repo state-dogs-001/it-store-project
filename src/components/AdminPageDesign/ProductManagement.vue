@@ -4,7 +4,7 @@
       <table class="table table-hover table-striped">
         <thead>
           <tr class="bg-dark text-light">
-            <th scope="col" :colspan="tableThead.length * 2 - 1">
+            <th scope="col" :colspan="tableThead.length">
               <h5>ตารางจัดการสินค้า</h5>
             </th>
             <th scope="col" class="text-right">
@@ -14,55 +14,90 @@
             </th>
           </tr>
           <tr>
-            <th
-              scope="col"
-              colspan="2"
-              v-for="read in tableThead"
-              :key="read.name"
-            >
+            <th scope="col" v-for="read in tableThead" :key="read.name">
               <p>{{ read.name }}</p>
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="index in 10" :key="index">
-            <th scope="row" colspan="2">{{ index }}</th>
-            <td colspan="2">Mark</td>
-            <td colspan="2">Otto</td>
-            <td colspan="2">Mark</td>
-            <td colspan="2">Otto</td>
-            <td colspan="2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente,
-              repellat.
+          <tr v-for="(read, index) in products" :key="read.name">
+            <!-- index -->
+            <th scope="row">{{ index + 1 }}</th>
+
+            <!-- type -->
+            <template v-if="read.typeProduct === 'mobile'">
+              <td>โทรศัพท์มือถือ</td>
+            </template>
+            <template v-else-if="read.typeProduct === 'laptop'">
+              <td>แล็ปท็อป</td>
+            </template>
+            <template v-else>
+              <td>คอมพิวเตอร์เซ็ต</td>
+            </template>
+
+            <!-- brand -->
+            <td class="text-up">{{ read.brandProduct }}</td>
+
+            <!-- name -->
+            <td class="text-up">{{ read.nameProduct }}</td>
+
+            <!-- price -->
+            <td>{{ read.priceProduct }}</td>
+
+            <!-- description -->
+            <td>
+              <b-button
+                variant="warning"
+                class="text-light"
+                @click="descriptionToast(index)"
+              >
+                อ่าน
+              </b-button>
             </td>
-            <td colspan="2">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente,
-              repellat.
+
+            <!-- status -->
+            <template v-if="read.productStatus === 'inStock'">
+              <td class="text-success">ปกติ</td>
+            </template>
+            <template v-else>
+              <td class="text-danger">สินค้าหมด</td>
+            </template>
+
+            <!-- image -->
+            <td>
+              <b-img :src="read.imageProduct" class="img-size" />
             </td>
-            <td colspan="2">ปกติ</td>
+
+            <!-- button update and delete -->
             <td class="text-right">
               <b-button
                 variant="primary"
-                class="mr-2"
                 @click="openModalUpdateProduct(index)"
               >
                 แก้ไข
               </b-button>
             </td>
             <td class="text-right">
-              <b-button variant="danger"> ลบ </b-button>
+              <b-button variant="danger" @click="deleteProduct(read.id)">
+                ลบ
+              </b-button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-
     <!-- Modal Add Product -->
     <b-modal v-model="modalAddProduct" centered hide-footer>
       <!-- Modal header -->
       <template #modal-header="{ close }">
         <h3>เพิ่มสินค้า</h3>
-        <button @click="close()" class="btn btn-danger">
+        <button
+          @click="
+            close();
+            clrearData();
+          "
+          class="btn btn-danger"
+        >
           <i class="fas fa-times"></i>
         </button>
       </template>
@@ -101,6 +136,7 @@
               <option value="dell">Dell</option>
               <option value="hp">hp</option>
               <option value="oppo">oppo</option>
+              <option value="samsung">Samsung</option>
               <option value="xiaomi">Xiaomi</option>
             </select>
           </b-col>
@@ -171,7 +207,13 @@
       <!-- Modal header -->
       <template #modal-header="{ close }">
         <h3>แก้ไขสินค้า</h3>
-        <button @click="close()" class="btn btn-danger">
+        <button
+          @click="
+            close();
+            clrearData();
+          "
+          class="btn btn-danger"
+        >
           <i class="fas fa-times"></i>
         </button>
       </template>
@@ -187,6 +229,7 @@
               v-model="statusProduct"
               required
             >
+              <option value="" disabled selected>เลือกสถานะของสินค้า</option>
               <option value="inStock">ปกติ</option>
               <option value="outStock">สินค้าหมด</option>
             </select>
@@ -224,6 +267,7 @@
               <option value="dell">Dell</option>
               <option value="hp">hp</option>
               <option value="oppo">oppo</option>
+              <option value="samsung">Samsung</option>
               <option value="xiaomi">Xiaomi</option>
             </select>
           </b-col>
@@ -292,6 +336,9 @@
 </template>
 
 <script>
+import { Timestamp } from "firebase/firestore";
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -305,11 +352,11 @@ export default {
         { name: "ประเภท" },
         { name: "แบรนด์" },
         { name: "ชื่อ" },
-        { name: "ราคา" },
-        { name: "ลิงค์รูปภาพ" },
-        { name: "คำอธิบายสินค้า" },
+        { name: "ราคา ฿" },
+        { name: "เพิ่มเติม" },
         { name: "สถานะ" },
-        { name: "จัดการสินค้า" },
+        { name: "รูปภาพ" },
+        { name: "จัดการ" },
       ],
 
       // Attributes for product
@@ -319,8 +366,19 @@ export default {
       imageProduct: null,
       priceProduct: null,
       description: null,
-      statusProduct: null,
+      statusProduct: "",
+
+      // use for update
+      id: null,
     };
+  },
+  computed: {
+    products: function () {
+      return this.$store.state.productDB.allProducts;
+    },
+  },
+  created() {
+    this.getAllProducts();
   },
   methods: {
     // Open modal add product
@@ -329,11 +387,63 @@ export default {
     },
     // Open modal update product
     openModalUpdateProduct(i) {
+      this.id = this.products[i].id;
+      this.typeProduct = this.products[i].typeProduct;
+      this.brandProduct = this.products[i].brandProduct;
+      this.nameProduct = this.products[i].nameProduct;
+      this.imageProduct = this.products[i].imageProduct;
+      this.priceProduct = this.products[i].priceProduct;
+      this.description = this.products[i].description;
+      this.statusProduct = this.products[i].productStatus;
       this.modalUpdateProduct = true;
-      console.log(i);
+    },
+    // when close modal data will clear.
+    clrearData() {
+      // Crear input text when add success.
+      this.typeProduct = "";
+      this.brandProduct = "";
+      this.nameProduct = null;
+      this.imageProduct = null;
+      this.priceProduct = null;
+      this.description = null;
+      this.statusProduct = "";
     },
 
-    addProduct() {
+    // Add Product
+    ...mapActions(["addProducts"]),
+    async addProduct() {
+      const productData = {
+        typeProduct: this.typeProduct,
+        brandProduct: this.brandProduct,
+        nameProduct: this.nameProduct.toLowerCase(),
+        imageProduct: this.imageProduct,
+        priceProduct: this.priceProduct,
+        description: this.description,
+        productStatus: "inStock",
+        date: Timestamp.now(),
+      };
+
+      try {
+        await this.addProducts(productData);
+
+        // Crear input text when add success.
+        this.typeProduct = "";
+        this.brandProduct = "";
+        this.nameProduct = null;
+        this.imageProduct = null;
+        this.priceProduct = null;
+        this.description = null;
+
+        // close modal
+        this.modalAddProduct = false;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    // Update Product
+    ...mapActions(["updateProducts"]),
+    async updateProduct() {
       const productData = {
         typeProduct: this.typeProduct,
         brandProduct: this.brandProduct,
@@ -341,20 +451,63 @@ export default {
         imageProduct: this.imageProduct,
         priceProduct: this.priceProduct,
         description: this.description,
+        productStatus: this.statusProduct,
       };
-      console.log(productData);
+
+      try {
+        await this.updateProducts({
+          id: this.id,
+          data: productData,
+        });
+
+        // close modal
+        this.modalUpdateProduct = false;
+
+        // refresh page
+        window.location.reload();
+      } catch (error) {
+        console.log(error);
+      }
     },
 
-    updateProduct() {
-      const productData = {
-        typeProduct: this.typeProduct,
-        brandProduct: this.brandProduct,
-        nameProduct: this.nameProduct,
-        imageProduct: this.imageProduct,
-        priceProduct: this.priceProduct,
-        description: this.description,
-      };
-      console.log(productData);
+    // Delete Product
+    ...mapActions(["deleteProducts"]),
+    async deleteProduct(i) {
+      const res = confirm("คุณต้องการจะลบสินค้าหรือไม่?");
+      if (res === true) {
+        try {
+          await this.deleteProducts(i);
+          alert("ลบสินค้าสำเร็จ");
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    },
+
+    // get data
+    ...mapActions(["getProducts"]),
+    async getAllProducts() {
+      try {
+        await this.getProducts();
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    // Toast Description
+    descriptionToast(i) {
+      const productName = this.products[i].nameProduct.toUpperCase();
+      const description = this.products[i].description;
+      this.$bvToast.toast(description, {
+        title: `รายละเอียดของ ${productName}`,
+        variant: "warning",
+        solid: true,
+        toaster: "b-toaster-top-center",
+        appendToast: false,
+      });
     },
   },
 };
@@ -363,5 +516,12 @@ export default {
 <style>
 .card-product-manage {
   border: none;
+}
+.img-size {
+  width: 40%;
+  height: 40%;
+}
+.text-up {
+  text-transform: uppercase;
 }
 </style>

@@ -14,7 +14,7 @@
 
         <!-- Left position is menu setting -->
         <!-- Right position is show -->
-        <b-tabs card pills :vertical="statusVertical">
+        <b-tabs card pills>
           <b-tab title="จัดการสินค้า" active>
             <b-card-text class="card-text-size">
               <ProductManage />
@@ -56,30 +56,9 @@ export default {
     ProductManage,
   },
   data() {
-    return {
-      statusVertical: true,
-    };
+    return {};
   },
-  mounted() {
-    const pageY = window.screen.width;
-    if (pageY <= 1200) {
-      this.statusVertical = false;
-    }
-
-    this.resizePage();
-  },
-  methods: {
-    resizePage() {
-      window.addEventListener("resize", () => {
-        let pageYResize = window.innerWidth;
-        if (pageYResize <= 1200) {
-          this.statusVertical = false;
-        } else {
-          this.statusVertical = true;
-        }
-      });
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -90,16 +69,10 @@ export default {
 .nav-pills a {
   color: black;
 }
-.nav-pills {
-  min-height: 30rem;
-}
 .card-text-size {
-  min-height: auto;
+  min-height: 20rem;
 }
-@media (max-width: 1200px) {
-  .nav-pills {
-    min-height: auto;
-  }
+@media (max-width: 770px) {
   .card-text-size {
     min-height: 10rem;
   }
