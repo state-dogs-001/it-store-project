@@ -7,14 +7,13 @@ import {
   onSnapshot,
   orderBy,
   where,
-  limit,
 } from "firebase/firestore";
 
 const state = {
   allProducts: [],
-  mobileLimit: [],
-  laptopLimit: [],
-  computerLimit: [],
+  mobiles: [],
+  laptops: [],
+  computers: [],
 };
 
 const mutations = {
@@ -22,16 +21,16 @@ const mutations = {
     state.allProducts = data;
   },
 
-  setMobileLimit(state, data) {
-    state.mobileLimit = data;
+  setMobiles(state, data) {
+    state.mobiles = data;
   },
 
-  setLaptopLimit(state, data) {
-    state.laptopLimit = data;
+  setLaptops(state, data) {
+    state.laptops = data;
   },
 
-  setComputerLimit(state, data) {
-    state.computerLimit = data;
+  setComputers(state, data) {
+    state.computers = data;
   },
 };
 
@@ -53,15 +52,14 @@ const actions = {
     commit("setProducts", data);
   },
 
-  // get mobile product limit
-  async getMobileLimit({ commit }) {
+  // get mobiles
+  async getMobiles({ commit }) {
     let data = [];
     const q = query(
       collection(db, "itmarket_products"),
       where("productStatus", "==", "inStock"),
       where("typeProduct", "==", "mobile"),
-      orderBy("date"),
-      limit(5)
+      orderBy("date")
     );
     onSnapshot(q, (snapshot) => {
       snapshot.docChanges().forEach((change) => {
@@ -73,18 +71,17 @@ const actions = {
         }
       });
     });
-    commit("setMobileLimit", data);
+    commit("setMobiles", data);
   },
 
-  // get laptop product limit
-  async getLaptopLimit({ commit }) {
+  // get laptops
+  async getLaptops({ commit }) {
     let data = [];
     const q = query(
       collection(db, "itmarket_products"),
       where("productStatus", "==", "inStock"),
       where("typeProduct", "==", "laptop"),
-      orderBy("date"),
-      limit(5)
+      orderBy("date")
     );
     onSnapshot(q, (snapshot) => {
       snapshot.docChanges().forEach((change) => {
@@ -96,18 +93,17 @@ const actions = {
         }
       });
     });
-    commit("setLaptopLimit", data);
+    commit("setLaptops", data);
   },
 
-  // get computer product limit
-  async getComputerLimit({ commit }) {
+  // get computers
+  async getComputers({ commit }) {
     let data = [];
     const q = query(
       collection(db, "itmarket_products"),
       where("productStatus", "==", "inStock"),
       where("typeProduct", "==", "computer"),
-      orderBy("date"),
-      limit(5)
+      orderBy("date")
     );
     onSnapshot(q, (snapshot) => {
       snapshot.docChanges().forEach((change) => {
@@ -116,16 +112,23 @@ const actions = {
             ...change.doc.data(),
             id: change.doc.id,
           });
-          console.log(data);
         }
       });
     });
-    commit("setComputerLimit", data);
+    commit("setComputers", data);
   },
+};
+
+const getters = {
+  products: (state) => state.allProducts,
+  mobiles: (state) => state.mobiles,
+  laptops: (state) => state.laptops,
+  computers: (state) => state.computers,
 };
 
 export default {
   state,
   mutations,
   actions,
+  getters,
 };

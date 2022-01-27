@@ -142,6 +142,11 @@ const mutations = {
   },
 };
 
+const getters = {
+  user: (state) => state.user,
+  status_user: (state) => state.authIsReady,
+};
+
 const unsub = onAuthStateChanged(auth, (user) => {
   if (!user) {
     store.commit("setAuthIsReady", false);
@@ -156,4 +161,5 @@ export default {
   state,
   actions,
   mutations,
+  getters,
 };

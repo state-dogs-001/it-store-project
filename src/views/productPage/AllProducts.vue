@@ -134,37 +134,38 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   computed: {
+    ...mapGetters(["mobiles"]),
+    ...mapGetters(["laptops"]),
+    ...mapGetters(["computers"]),
+
     mobileLimit: function () {
-      return this.$store.state.productDB.mobileLimit;
+      return this.mobiles.slice(0, 5);
     },
     laptopLimit: function () {
-      return this.$store.state.productDB.laptopLimit;
+      return this.laptops.slice(0, 5);
     },
     computerLimit: function () {
-      return this.$store.state.productDB.computerLimit;
+      return this.computers.slice(0, 5);
     },
   },
   created() {
-    // get mobile function
-    this.getData();
+    // get data
+    this.getMobiles();
+    this.getLaptops();
+    this.getComputers();
   },
   mounted() {
     // Use for smooth scroll a href to id
     this.smoothScroll();
   },
   methods: {
-    ...mapActions(["getMobileLimit"]),
-    ...mapActions(["getLaptopLimit"]),
-    ...mapActions(["getComputerLimit"]),
-    async getData() {
-      await this.getMobileLimit();
-      await this.getLaptopLimit();
-      await this.getComputerLimit();
-    },
+    ...mapActions(["getMobiles"]),
+    ...mapActions(["getLaptops"]),
+    ...mapActions(["getComputers"]),
 
     // // This function use for smooth scroll a href to id
     smoothScroll() {

@@ -122,8 +122,14 @@ const actions = {
   },
 };
 
+const getters = {
+  telNumber: (state) => state.userTelNumber,
+  location: (state) => state.userLocation,
+};
+
 export default {
   state,
   mutations,
   actions,
+  getters,
 };

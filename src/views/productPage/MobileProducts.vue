@@ -12,11 +12,43 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import CardComp from "../../components/productDesign/CardComponent.vue";
 
 export default {
   components: {
     CardComp,
+  },
+  computed: {
+    ...mapGetters(["mobiles"]),
+
+    // filter mobiles brand
+    appleMobiles: function () {
+      return this.mobiles.filter((products) => {
+        return products.brandProduct.match("apple");
+      });
+    },
+    samsungMobiles: function () {
+      return this.mobiles.filter((products) => {
+        return products.brandProduct.match("samsung");
+      });
+    },
+    oppoMobiles: function () {
+      return this.mobiles.filter((products) => {
+        return products.brandProduct.match("oppo");
+      });
+    },
+    xiaomiMobiles: function () {
+      return this.mobiles.filter((products) => {
+        return products.brandProduct.match("xiaomi");
+      });
+    },
+  },
+  created() {
+    this.getMobiles();
+  },
+  methods: {
+    ...mapActions(["getMobiles"]),
   },
 };
 </script>

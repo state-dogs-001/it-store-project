@@ -48,7 +48,7 @@
 
 <script>
 // Import mapActios from vuex
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -60,12 +60,8 @@ export default {
     };
   },
   computed: {
-    user: function () {
-      return this.$store.state.Auth.user;
-    },
-    status_user: function () {
-      return this.$store.state.Auth.authIsReady;
-    },
+    ...mapGetters(["user"]),
+    ...mapGetters(["status_user"]),
   },
   methods: {
     // Sign-out

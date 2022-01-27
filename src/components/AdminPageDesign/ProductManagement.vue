@@ -363,7 +363,7 @@
 
 <script>
 import { Timestamp } from "firebase/firestore";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data() {
@@ -393,7 +393,6 @@ export default {
       priceProduct: null,
       description: null,
       statusProduct: "",
-
       // use for update
       id: null,
 
@@ -403,9 +402,7 @@ export default {
     };
   },
   computed: {
-    products: function () {
-      return this.$store.state.productDB.allProducts;
-    },
+    ...mapGetters(["products"]),
     productsSlice: function () {
       let start = (this.page - 1) * this.perPage,
         end = start + this.perPage;
@@ -413,7 +410,8 @@ export default {
     },
   },
   created() {
-    this.getAllProducts();
+    // Get all products
+    this.getProducts();
   },
   methods: {
     // Open modal add product
@@ -443,6 +441,9 @@ export default {
       this.description = null;
       this.statusProduct = "";
     },
+
+    // get data
+    ...mapActions(["getProducts"]),
 
     // Add Product
     ...mapActions(["addProducts"]),
@@ -522,17 +523,7 @@ export default {
       }
     },
 
-    // get data
-    ...mapActions(["getProducts"]),
-    async getAllProducts() {
-      try {
-        await this.getProducts();
-      } catch (error) {
-        console.log(error);
-      }
-    },
-
-    // Pagination
+    // Pagination functions
     onPage(i) {
       this.page = i;
     },

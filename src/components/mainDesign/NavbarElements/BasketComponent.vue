@@ -8,11 +8,10 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   computed: {
-    status_user: function () {
-      return this.$store.state.Auth.authIsReady;
-    },
+    ...mapGetters(["status_user"]),
   },
 };
 </script>

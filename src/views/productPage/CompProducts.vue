@@ -12,11 +12,38 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 import CardComp from "../../components/productDesign/CardComponent.vue";
 
 export default {
   components: {
     CardComp,
+  },
+  computed: {
+    ...mapGetters(["computers"]),
+
+    // filter computers brand
+    acerComputers: function () {
+      return this.computers.filter((products) => {
+        return products.brandProduct.match("acer");
+      });
+    },
+    dellComputers: function () {
+      return this.computers.filter((products) => {
+        return products.brandProduct.match("dell");
+      });
+    },
+    hpComputers: function () {
+      return this.computers.filter((products) => {
+        return products.brandProduct.match("hp");
+      });
+    },
+  },
+  created() {
+    this.getComputers();
+  },
+  methods: {
+    ...mapActions(["getComputers"]),
   },
 };
 </script>

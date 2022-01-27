@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import ProductComp from "../../components/productDesign/ProductComponent.vue";
 
 export default {
@@ -15,12 +16,8 @@ export default {
     ProductComp,
   },
   computed: {
-    user: function () {
-      return this.$store.state.Auth.user;
-    },
-    status_user: function () {
-      return this.$store.state.Auth.authIsReady;
-    },
+    ...mapGetters(["user"]),
+    ...mapGetters(["status_user"]),
   },
 };
 </script>

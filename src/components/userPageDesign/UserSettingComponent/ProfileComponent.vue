@@ -79,21 +79,13 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   computed: {
-    user: function () {
-      return this.$store.state.Auth.user;
-    },
-    status_user: function () {
-      return this.$store.state.Auth.authIsReady;
-    },
-    telNumber: function () {
-      return this.$store.state.UserDB.userTelNumber;
-    },
-    location: function () {
-      return this.$store.state.UserDB.userLocation;
-    },
+    ...mapGetters(["user"]),
+    ...mapGetters(["status_user"]),
+    ...mapGetters(["telNumber"]),
+    ...mapGetters(["location"]),
   },
   created() {
     this.getTel();
