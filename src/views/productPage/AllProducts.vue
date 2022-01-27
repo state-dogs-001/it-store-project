@@ -17,9 +17,32 @@
         </h1>
         <hr />
       </b-col>
-      <b-col class="my-4" lg="4" sm="6" v-for="mi in 5" :key="mi">
-        <CardComp title="Mobile Product" />
+
+      <b-col
+        class="my-4"
+        lg="4"
+        sm="6"
+        v-for="read in mobileLimit"
+        :key="read.nameProduct"
+      >
+        <b-card
+          :title="read.brandProduct"
+          :sub-title="read.nameProduct"
+          :img-src="read.imageProduct"
+          img-top
+          tag="article"
+          style="max-width: 18rem"
+          class="card-image"
+        >
+          <b-card-text> ราคา = {{ read.priceProduct }} </b-card-text>
+
+          <b-button href="#" variant="primary" class="mr-2">
+            Go somewhere
+          </b-button>
+          <b-button href="#" variant="success">View</b-button>
+        </b-card>
       </b-col>
+
       <b-col class="my-4 text-center card-a" lg="4" sm="6">
         <a href="/products/mobiles">
           <b-card class="card-more">
@@ -35,8 +58,29 @@
         </h1>
         <hr />
       </b-col>
-      <b-col class="my-4" lg="4" sm="6" v-for="li in 5" :key="li">
-        <CardComp title="Laptop Product" />
+      <b-col
+        class="my-4"
+        lg="4"
+        sm="6"
+        v-for="read in laptopLimit"
+        :key="read.nameProduct"
+      >
+        <b-card
+          :title="read.brandProduct"
+          :sub-title="read.nameProduct"
+          :img-src="read.imageProduct"
+          img-top
+          tag="article"
+          style="max-width: 18rem"
+          class="card-image"
+        >
+          <b-card-text> ราคา = {{ read.priceProduct }} </b-card-text>
+
+          <b-button href="#" variant="primary" class="mr-2"
+            >Go somewhere</b-button
+          >
+          <b-button href="#" variant="success">View</b-button>
+        </b-card>
       </b-col>
       <b-col class="my-4 text-center card-a" lg="4" sm="6">
         <a href="/products/laptops">
@@ -53,8 +97,29 @@
         </h1>
         <hr />
       </b-col>
-      <b-col class="my-4" lg="4" sm="6" v-for="ci in 5" :key="ci">
-        <CardComp title="Computer Product" />
+      <b-col
+        class="my-4"
+        lg="4"
+        sm="6"
+        v-for="read in computerLimit"
+        :key="read.nameProduct"
+      >
+        <b-card
+          :title="read.brandProduct"
+          :sub-title="read.nameProduct"
+          :img-src="read.imageProduct"
+          img-top
+          tag="article"
+          style="max-width: 18rem"
+          class="card-image"
+        >
+          <b-card-text> ราคา = {{ read.priceProduct }} </b-card-text>
+
+          <b-button href="#" variant="primary" class="mr-2"
+            >Go somewhere</b-button
+          >
+          <b-button href="#" variant="success">View</b-button>
+        </b-card>
       </b-col>
       <b-col class="my-4 text-center card-a" lg="4" sm="6">
         <a href="/products/computers">
@@ -69,17 +134,38 @@
 </template>
 
 <script>
-import CardComp from "../../components/productDesign/CardComponent.vue";
+import { mapActions } from "vuex";
 
 export default {
-  components: {
-    CardComp,
+  computed: {
+    mobileLimit: function () {
+      return this.$store.state.productDB.mobileLimit;
+    },
+    laptopLimit: function () {
+      return this.$store.state.productDB.laptopLimit;
+    },
+    computerLimit: function () {
+      return this.$store.state.productDB.computerLimit;
+    },
+  },
+  created() {
+    // get mobile function
+    this.getData();
   },
   mounted() {
     // Use for smooth scroll a href to id
     this.smoothScroll();
   },
   methods: {
+    ...mapActions(["getMobileLimit"]),
+    ...mapActions(["getLaptopLimit"]),
+    ...mapActions(["getComputerLimit"]),
+    async getData() {
+      await this.getMobileLimit();
+      await this.getLaptopLimit();
+      await this.getComputerLimit();
+    },
+
     // // This function use for smooth scroll a href to id
     smoothScroll() {
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -104,6 +190,28 @@ export default {
   text-decoration: none;
   color: rgb(255, 43, 96);
 }
+
+.card-image {
+  border: none;
+  margin: 0 auto;
+  float: none;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.card-image img {
+  margin: 0 auto;
+  float: none;
+  width: 8rem;
+  height: auto;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+.card-image img:hover {
+  -webkit-transform: scale(1.08);
+  transform: scale(1.08);
+}
+
 .card-a a {
   color: black;
 }

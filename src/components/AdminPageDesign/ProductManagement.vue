@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="table-responsive">
-      <table class="table table-hover table-striped">
+      <table class="table table-hover table-striped" id="my-table">
         <thead>
           <tr class="bg-dark text-light">
             <th scope="col" :colspan="tableThead.length">
@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(read, index) in products" :key="read.name">
+          <tr v-for="(read, index) in productsSlice" :key="read.name">
             <!-- index -->
             <th scope="row">{{ index + 1 }}</th>
 
@@ -42,7 +42,9 @@
             <td class="text-up">{{ read.nameProduct }}</td>
 
             <!-- price -->
-            <td>{{ read.priceProduct }}</td>
+            <td>
+              {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+            </td>
 
             <!-- description -->
             <td>
@@ -86,6 +88,30 @@
         </tbody>
       </table>
     </div>
+
+    <!-- Pagination -->
+    <div class="mt-5">
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <button class="page-link" @click="prePage">ก่อนหน้า</button>
+          </li>
+          <li
+            class="page-item"
+            v-for="index in Math.ceil(products.length / perPage)"
+            :key="index"
+          >
+            <button class="page-link" @click="onPage(index)">
+              {{ index }}
+            </button>
+          </li>
+          <li class="page-item">
+            <button class="page-link" @click="nextPage">ถัดไป</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
     <!-- Modal Add Product -->
     <b-modal v-model="modalAddProduct" centered hide-footer>
       <!-- Modal header -->
@@ -370,11 +396,20 @@ export default {
 
       // use for update
       id: null,
+
+      // Use for pagination
+      page: 1,
+      perPage: 10,
     };
   },
   computed: {
     products: function () {
       return this.$store.state.productDB.allProducts;
+    },
+    productsSlice: function () {
+      let start = (this.page - 1) * this.perPage,
+        end = start + this.perPage;
+      return this.products.slice(start, end);
     },
   },
   created() {
@@ -497,6 +532,23 @@ export default {
       }
     },
 
+    // Pagination
+    onPage(i) {
+      this.page = i;
+    },
+
+    prePage() {
+      if (this.page > 1) {
+        this.page--;
+      }
+    },
+
+    nextPage() {
+      if (this.page < Math.ceil(this.products.length / this.perPage)) {
+        this.page++;
+      }
+    },
+
     // Toast Description
     descriptionToast(i) {
       const productName = this.products[i].nameProduct.toUpperCase();
@@ -523,5 +575,8 @@ export default {
 }
 .text-up {
   text-transform: uppercase;
+}
+.page-item .page-link {
+  color: rgb(255, 43, 96);
 }
 </style>
