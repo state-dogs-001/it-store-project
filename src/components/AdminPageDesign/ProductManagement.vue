@@ -22,7 +22,7 @@
         <tbody>
           <tr v-for="(read, index) in productsSlice" :key="read.name">
             <!-- index -->
-            <th scope="row">{{ index + 1 }}</th>
+            <th scope="row">{{ index + 1 + calIndex }}</th>
 
             <!-- type -->
             <template v-if="read.typeProduct === 'mobile'">
@@ -408,6 +408,12 @@ export default {
         end = start + this.perPage;
       return this.products.slice(start, end);
     },
+
+    // Use for calculate with index in table
+    calIndex: function () {
+      let number = (this.page - 1) * this.perPage;
+      return number;
+    },
   },
   created() {
     // Get all products
@@ -530,13 +536,13 @@ export default {
 
     prePage() {
       if (this.page > 1) {
-        this.page--;
+        this.page -= 1;
       }
     },
 
     nextPage() {
       if (this.page < Math.ceil(this.products.length / this.perPage)) {
-        this.page++;
+        this.page += 1;
       }
     },
 
