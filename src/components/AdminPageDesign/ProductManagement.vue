@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="table-responsive">
-      <table class="table table-hover table-striped" id="my-table">
+      <table class="table table-hover table-striped">
         <thead>
           <tr class="bg-dark text-light">
             <th scope="col" :colspan="tableThead.length">

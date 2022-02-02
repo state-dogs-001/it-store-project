@@ -34,12 +34,7 @@
 
           <b-tab title="การรายงานจากลูกค้า">
             <b-card-text class="card-text-size">
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Eligendi itaque voluptas unde quod quis et, id molestiae,
-                pariatur ipsa voluptate delectus ex exercitationem sint odit
-                quas eveniet cupiditate in? Blanditiis?
-              </p>
+              <UserReport />
             </b-card-text>
           </b-tab>
         </b-tabs>
@@ -50,10 +45,12 @@
 
 <script>
 import ProductManage from "../../components/AdminPageDesign/ProductManagement.vue";
+import UserReport from "../../components/AdminPageDesign/UserReport.vue";
 
 export default {
   components: {
     ProductManage,
+    UserReport,
   },
   data() {
     return {};

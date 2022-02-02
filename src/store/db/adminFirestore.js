@@ -7,12 +7,16 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  query,
+  orderBy,
+  onSnapshot,
 } from "firebase/firestore";
 
 const state = {
   addProductStatus: false,
   updateProductStatus: false,
   deleteProductStatus: false,
+  userReport: [],
 };
 
 const mutations = {
@@ -27,6 +31,9 @@ const mutations = {
   setDeleteStatus(state, status) {
     state.deleteProductStatus = status;
     console.log("Delete status ", state.deleteProductStatus);
+  },
+  setUserReport(state, data) {
+    state.userReport = data;
   },
 };
 
@@ -59,10 +66,35 @@ const actions = {
       commit("setDeleteStatus", false);
     }, 2000);
   },
+
+  // Get user report
+  async getUserReport({ commit }) {
+    let data = [];
+    const q = query(
+      collection(db, "itmarket_user_report"),
+      orderBy("date_report")
+    );
+    onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          data.push({
+            ...change.doc.data(),
+            id: change.doc.id,
+          });
+        }
+      });
+    });
+    commit("setUserReport", data);
+  },
+};
+
+const getters = {
+  userReport: (state) => state.userReport,
 };
 
 export default {
   state,
   mutations,
   actions,
+  getters,
 };

@@ -232,6 +232,14 @@ const routes = [
     path: "/dashboard",
     name: "Dashboard",
     component: () => import("../views/dashboardPage/Dashboard.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
   },
   {
     path: "/test",
