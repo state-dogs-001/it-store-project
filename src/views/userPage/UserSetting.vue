@@ -14,7 +14,7 @@
 
         <!-- Left position is menu setting -->
         <!-- Right position is show -->
-        <b-tabs card pills :vertical="statusVertical">
+        <b-tabs card pills :vertical="statusVertical" class="nav-pills-width">
           <b-tab title="หน้าโปรไฟล์" active>
             <b-card-text class="card-text-size">
               <ProfileComp />
@@ -76,24 +76,24 @@ export default {
 .nav-pills a {
   color: black;
 }
-.nav-pills {
+.nav-pills-width {
   min-height: 30rem;
 }
 .card-text-size {
   min-height: auto;
 }
 @media (max-width: 770px) {
-  .nav-pills {
+  .nav-pills-width {
     min-height: auto;
   }
   .card-text-size {
     min-height: 10rem;
   }
 }
-.nav-pills .nav-link:not(.active) {
+.nav-pills-width .nav-link:not(.active) {
   background-color: none;
 }
-.nav-pills .nav-link.active {
+.nav-pills-width .nav-link.active {
   background-color: rgb(255, 43, 96);
 }
 </style>

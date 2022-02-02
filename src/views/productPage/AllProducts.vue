@@ -11,6 +11,7 @@
         </p>
       </b-col>
 
+      <!-- Mobile Products -->
       <b-col lg="12" id="mobile">
         <h1 class="mt-4 font-weight-bold text-center">
           โทรศัพท์มือถือ <i class="fas fa-mobile-alt"></i>
@@ -34,12 +35,21 @@
           style="max-width: 18rem"
           class="card-image"
         >
-          <b-card-text> ราคา = {{ read.priceProduct }} </b-card-text>
+          <b-card-text>
+            ราคา = {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+          </b-card-text>
 
-          <b-button href="#" variant="primary" class="mr-2">
-            Go somewhere
-          </b-button>
-          <b-button href="#" variant="success">View</b-button>
+          <!-- Button -->
+          <b-col lg="12" class="text-center">
+            <b-button
+              variant="primary"
+              class="mr-2"
+              @click="getProductID(read.id)"
+            >
+              ดูสินค้า
+            </b-button>
+            <b-button href="#" variant="success">หยิบใส่ตะกร้า</b-button>
+          </b-col>
         </b-card>
       </b-col>
 
@@ -52,6 +62,7 @@
         </a>
       </b-col>
 
+      <!-- Laptop Products -->
       <b-col lg="12" id="laptop">
         <h1 class="mt-4 font-weight-bold text-center">
           แล็ปท็อป <i class="fas fa-laptop"></i>
@@ -74,12 +85,21 @@
           style="max-width: 18rem"
           class="card-image"
         >
-          <b-card-text> ราคา = {{ read.priceProduct }} </b-card-text>
+          <b-card-text>
+            ราคา = {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+          </b-card-text>
 
-          <b-button href="#" variant="primary" class="mr-2"
-            >Go somewhere</b-button
-          >
-          <b-button href="#" variant="success">View</b-button>
+          <!-- Button -->
+          <b-col lg="12" class="text-center">
+            <b-button
+              variant="primary"
+              class="mr-2"
+              @click="getProductID(read.id)"
+            >
+              ดูสินค้า
+            </b-button>
+            <b-button href="#" variant="success">หยิบใส่ตะกร้า</b-button>
+          </b-col>
         </b-card>
       </b-col>
       <b-col class="my-4 text-center card-a" lg="4" sm="6">
@@ -91,6 +111,7 @@
         </a>
       </b-col>
 
+      <!-- Computer Products -->
       <b-col lg="12" id="computer">
         <h1 class="mt-4 font-weight-bold text-center">
           คอมพิวเตอร์เซ็ต <i class="fas fa-desktop"></i>
@@ -113,12 +134,21 @@
           style="max-width: 18rem"
           class="card-image"
         >
-          <b-card-text> ราคา = {{ read.priceProduct }} </b-card-text>
+          <b-card-text>
+            ราคา = {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+          </b-card-text>
 
-          <b-button href="#" variant="primary" class="mr-2"
-            >Go somewhere</b-button
-          >
-          <b-button href="#" variant="success">View</b-button>
+          <!-- Button -->
+          <b-col lg="12" class="text-center">
+            <b-button
+              variant="primary"
+              class="mr-2"
+              @click="getProductID(read.id)"
+            >
+              ดูสินค้า
+            </b-button>
+            <b-button href="#" variant="success">หยิบใส่ตะกร้า</b-button>
+          </b-col>
         </b-card>
       </b-col>
       <b-col class="my-4 text-center card-a" lg="4" sm="6">
@@ -158,32 +188,22 @@ export default {
     this.getLaptops();
     this.getComputers();
   },
-  mounted() {
-    // Use for smooth scroll a href to id
-    this.smoothScroll();
-  },
   methods: {
     ...mapActions(["getMobiles"]),
     ...mapActions(["getLaptops"]),
     ...mapActions(["getComputers"]),
 
-    // // This function use for smooth scroll a href to id
-    smoothScroll() {
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-
-          document.querySelector(this.getAttribute("href")).scrollIntoView({
-            behavior: "smooth",
-          });
-        });
-      });
+    getProductID(id) {
+      this.$router.push(`/product/${id}`);
     },
   },
 };
 </script>
 
 <style>
+html {
+  scroll-behavior: smooth !important;
+}
 .list-brannds a {
   color: black;
 }

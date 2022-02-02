@@ -11,6 +11,7 @@ import {
 
 const state = {
   allProducts: [],
+  productsInStcock: [],
   mobiles: [],
   laptops: [],
   computers: [],
@@ -19,6 +20,10 @@ const state = {
 const mutations = {
   setProducts(state, data) {
     state.allProducts = data;
+  },
+
+  setProductsInStock(state, data) {
+    state.productsInStcock = data;
   },
 
   setMobiles(state, data) {
@@ -50,6 +55,27 @@ const actions = {
       });
     });
     commit("setProducts", data);
+  },
+
+  // get all products data in stock
+  async getProductsInStock({ commit }) {
+    let data = [];
+    const q = query(
+      collection(db, "itmarket_products"),
+      where("productStatus", "==", "inStock"),
+      orderBy("date")
+    );
+    onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          data.push({
+            ...change.doc.data(),
+            id: change.doc.id,
+          });
+        }
+      });
+    });
+    commit("setProductsInStock", data);
   },
 
   // get mobiles
@@ -121,6 +147,7 @@ const actions = {
 
 const getters = {
   products: (state) => state.allProducts,
+  productsInStock: (state) => state.productsInStcock,
   mobiles: (state) => state.mobiles,
   laptops: (state) => state.laptops,
   computers: (state) => state.computers,

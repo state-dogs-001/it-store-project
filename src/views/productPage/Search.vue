@@ -2,7 +2,7 @@
   <div>
     <b-container>
       <b-card
-        class="mt-5 mb-3 card-search"
+        class="my-5 card-search"
         header-tag="header"
         header-bg-variant="dark"
         header-text-variant="white"
@@ -19,12 +19,44 @@
               <p>Sorry, this {{ searchText }} is not found</p>
             </template>
             <template v-else>
-              <div v-for="item in filterData" :key="item.text">
-                <p>
-                  {{ item.text }}
-                  <b-button @click="test(item.id)">Show ID</b-button>
-                </p>
-              </div>
+              <b-row>
+                <b-col
+                  lg="4"
+                  sm="6"
+                  class="my-3"
+                  v-for="read in filterData"
+                  :key="read.nameProduct"
+                >
+                  <b-card
+                    :title="read.brandProduct"
+                    :sub-title="read.nameProduct"
+                    :img-src="read.imageProduct"
+                    img-top
+                    tag="article"
+                    style="max-width: 18rem"
+                    class="card-image"
+                  >
+                    <b-card-text>
+                      ราคา =
+                      {{
+                        read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                      }}
+                    </b-card-text>
+
+                    <!-- Button -->
+                    <b-col lg="12" class="text-center">
+                      <b-button
+                        variant="primary"
+                        class="mr-2"
+                        block
+                        @click="getProductID(read.id)"
+                      >
+                        ดูสินค้า
+                      </b-button>
+                    </b-col>
+                  </b-card>
+                </b-col>
+              </b-row>
             </template>
           </b-col>
         </b-row>
@@ -34,37 +66,30 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
-  data() {
-    return {
-      searchText: this.$route.params.id,
-    };
-  },
-  created() {
-    // Create function get data
-    this.getDataFromDB();
-  },
-  methods: {
-    ...mapActions(["getData"]),
-    async getDataFromDB() {
-      await this.getData();
-    },
-    test(i) {
-      alert(i);
-    },
-  },
   computed: {
-    // Data before search (not show)
-    data: function () {
-      return this.$store.state.Database.dataArray;
+    // Search Text
+    searchText: function () {
+      return this.$route.params.name;
     },
-    // Search
+
+    // Data before search (not show)
+    ...mapGetters(["productsInStock"]),
+
+    // Filter data from Search
     filterData: function () {
-      return this.data.filter((item) => {
-        return item.text.match(this.searchText);
+      return this.productsInStock.filter((products) => {
+        return products.nameProduct.match(this.searchText);
       });
     },
+  },
+  created() {
+    // get data
+    this.getProductsInStock();
+  },
+  methods: {
+    ...mapActions(["getProductsInStock"]),
   },
 };
 </script>
@@ -72,5 +97,25 @@ export default {
 <style>
 .card-search {
   border: none;
+}
+.card-image {
+  border: none;
+  margin: 0 auto;
+  float: none;
+  height: 100%;
+  overflow: hidden;
+  box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.card-image img {
+  margin: 0 auto;
+  float: none;
+  width: 8rem;
+  height: auto;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
+}
+.card-image img:hover {
+  -webkit-transform: scale(1.08);
+  transform: scale(1.08);
 }
 </style>

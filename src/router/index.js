@@ -73,7 +73,20 @@ const routes = [
     ],
   },
   {
-    path: "/search/:id",
+    path: "/product/:name",
+    name: "Product",
+    component: () => import("../views/productPage/ReadMoreProduct.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
+    path: "/search/:name",
     name: "Search",
     component: () => import("../views/productPage/Search.vue"),
     beforeEnter: (to, from, next) => {

@@ -49,8 +49,7 @@
             <!-- description -->
             <td>
               <b-button
-                variant="warning"
-                class="text-light"
+                variant="outline-warning"
                 @click="descriptionToast(index)"
               >
                 อ่าน
@@ -66,8 +65,8 @@
             </template>
 
             <!-- image -->
-            <td>
-              <b-img :src="read.imageProduct" class="img-size" />
+            <td width="150px">
+              <img :src="read.imageProduct" width="100%" class="rounded" />
             </td>
 
             <!-- button update and delete -->
@@ -426,6 +425,7 @@ export default {
     },
     // Open modal update product
     openModalUpdateProduct(i) {
+      // Set data
       this.id = this.products[i].id;
       this.typeProduct = this.products[i].typeProduct;
       this.brandProduct = this.products[i].brandProduct;
@@ -434,6 +434,8 @@ export default {
       this.priceProduct = this.products[i].priceProduct;
       this.description = this.products[i].description;
       this.statusProduct = this.products[i].productStatus;
+
+      // Open modal
       this.modalUpdateProduct = true;
     },
     // when close modal data will clear.
@@ -566,13 +568,11 @@ export default {
 .card-product-manage {
   border: none;
 }
-.img-size {
-  width: 40%;
-  height: 40%;
-}
+
 .text-up {
   text-transform: uppercase;
 }
+
 .page-item .page-link {
   color: rgb(255, 43, 96);
 }
