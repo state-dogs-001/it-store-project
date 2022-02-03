@@ -5,9 +5,10 @@
         <h4>หมวดหมู่: แล็ปท็อป</h4>
         <p>
           แบรนด์:
-          <a href="#acer">Acer</a> | <a href="#asus">Asus</a> |
-          <a href="#dell">Dell</a> |
-          <a href="#hp">hp</a>
+          <button class="btn btn-link" @click="toAcer">Acer</button> |
+          <button class="btn btn-link" @click="toAsus">Asus</button> |
+          <button class="btn btn-link" @click="toDell">Dell</button> |
+          <button class="btn btn-link" @click="toHp">hp</button>
         </p>
       </b-col>
 
@@ -211,23 +212,44 @@ export default {
     this.getLaptops();
   },
   methods: {
+    //Go to id smooth scrolling
+    toAcer() {
+      document.querySelector("#acer").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    toAsus() {
+      document.querySelector("#asus").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    toDell() {
+      document.querySelector("#dell").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    toHp() {
+      document.querySelector("#hp").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+
+    // Get data
     ...mapActions(["getLaptops"]),
 
+    // Go to view product more
     getProductID(id) {
-      this.$router.push(`/product/${id}`);
+      this.$router.push(`/view/product/?id=${id}`);
     },
   },
 };
 </script>
 
 <style>
-html {
-  scroll-behavior: smooth !important;
-}
-.list-brannds a {
+.list-brannds button {
   color: black;
 }
-.list-brannds a:hover {
+.list-brannds button:hover {
   text-decoration: none;
   color: rgb(255, 43, 96);
 }

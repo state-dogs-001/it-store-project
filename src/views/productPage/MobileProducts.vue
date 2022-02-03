@@ -5,9 +5,10 @@
         <h4>หมวดหมู่: โทรศัพท์มือถือ</h4>
         <p>
           แบรนด์:
-          <a href="#apple">Apple</a> | <a href="#oppo">OPPO</a> |
-          <a href="#samsung">Samsung</a> |
-          <a href="#xiaomi">Xiaomi</a>
+          <button class="btn btn-link" @click="toApple">Apple</button> |
+          <button class="btn btn-link" @click="toOppo">OPPO</button> |
+          <button class="btn btn-link" @click="toSamsung">Samsung</button> |
+          <button class="btn btn-link" @click="toXiaomi">Xiaomi</button>
         </p>
       </b-col>
 
@@ -209,23 +210,44 @@ export default {
     this.getMobiles();
   },
   methods: {
+    // Go to id smooth scrolling
+    toApple() {
+      document.querySelector("#apple").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    toOppo() {
+      document.querySelector("#oppo").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    toSamsung() {
+      document.querySelector("#samsung").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    toXiaomi() {
+      document.querySelector("#xiaomi").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+
+    // Get data
     ...mapActions(["getMobiles"]),
 
+    // Go to product more
     getProductID(id) {
-      this.$router.push(`/product/${id}`);
+      this.$router.push(`/view/product/?id=${id}`);
     },
   },
 };
 </script>
 
 <style>
-html {
-  scroll-behavior: smooth !important;
-}
-.list-brannds a {
+.list-brannds button {
   color: black;
 }
-.list-brannds a:hover {
+.list-brannds button:hover {
   text-decoration: none;
   color: rgb(255, 43, 96);
 }

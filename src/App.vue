@@ -16,7 +16,10 @@
 </template>
 
 <script>
+// Import Component Go to top
 import GoTop from "@inotom/vue-go-top";
+
+// Components
 import NavBar from "./components/mainDesign/NavbarComponent.vue";
 import FooterComp from "./components/mainDesign/FooterComponent.vue";
 

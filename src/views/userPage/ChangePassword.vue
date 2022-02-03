@@ -114,7 +114,8 @@ export default {
           this.error = err.message;
         }
       } else {
-        console.log("Password not match");
+        this.dismissCountDown = this.dismissSecs;
+        this.error = "Password not match";
       }
     },
 

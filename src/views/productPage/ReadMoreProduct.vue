@@ -46,7 +46,7 @@ export default {
     ...mapGetters(["productsInStock"]),
 
     nameFromPath: function () {
-      return this.$route.params.name;
+      return this.$route.query.id;
     },
 
     product: function () {

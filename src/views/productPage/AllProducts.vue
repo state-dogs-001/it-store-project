@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div class="all-products">
     <b-row>
       <b-col lg="12" class="list-brannds">
         <h4>หมวดหมู่: สินค้าทั้งหมด</h4>
         <p>
           ประเภท:
-          <a href="#mobile">โทรศัพท์มือถือ</a> |
-          <a href="#laptop">แล็ปท็อป</a> |
-          <a href="#computer">คอมพิวเตอร์เซ็ต</a>
+          <button class="btn btn-link" @click="toMobile">โทรศัพท์มือถือ</button>
+          | <button class="btn btn-link" @click="toLaptop">แล็ปท็อป</button> |
+          <button class="btn btn-link" @click="toComputer">
+            คอมพิวเตอร์เซ็ต
+          </button>
         </p>
       </b-col>
 
@@ -189,25 +191,41 @@ export default {
     this.getComputers();
   },
   methods: {
+    // Go to id smooth scrolling
+    toMobile() {
+      document.querySelector("#mobile").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    toLaptop() {
+      document.querySelector("#laptop").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    toComputer() {
+      document.querySelector("#computer").scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+
+    // Get Data
     ...mapActions(["getMobiles"]),
     ...mapActions(["getLaptops"]),
     ...mapActions(["getComputers"]),
 
+    // Go to view product more
     getProductID(id) {
-      this.$router.push(`/product/${id}`);
+      this.$router.push(`/view/product/?id=${id}`);
     },
   },
 };
 </script>
 
 <style>
-html {
-  scroll-behavior: smooth !important;
-}
-.list-brannds a {
+.list-brannds button {
   color: black;
 }
-.list-brannds a:hover {
+.list-brannds button:hover {
   text-decoration: none;
   color: rgb(255, 43, 96);
 }

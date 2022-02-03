@@ -73,7 +73,7 @@ const routes = [
     ],
   },
   {
-    path: "/product/:name",
+    path: "/view/product",
     name: "Product",
     component: () => import("../views/productPage/ReadMoreProduct.vue"),
     beforeEnter: (to, from, next) => {

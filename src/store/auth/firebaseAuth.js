@@ -5,6 +5,8 @@ import { auth } from "../../configs/firebase.js";
 
 // Import firebase auth
 import {
+  setPersistence, // Firebase Auth State Persistance
+  browserSessionPersistence, // Terminate State If Close Browser
   createUserWithEmailAndPassword, // Register
   updateProfile, // Use for update display name
   signInWithEmailAndPassword, // Login
@@ -31,6 +33,8 @@ const actions = {
   // Register
   async signup(context, { email, password, name }) {
     console.log("Singup Action");
+    // Set State Persistance
+    await setPersistence(auth, browserSessionPersistence);
     const res = await createUserWithEmailAndPassword(auth, email, password);
     if (res) {
       context.commit("setUser", res.user);
@@ -46,6 +50,8 @@ const actions = {
   // Signin
   async signin(context, { email, password }) {
     console.log("Signin Action");
+    // Set State Persistance
+    await setPersistence(auth, browserSessionPersistence);
     const res = await signInWithEmailAndPassword(auth, email, password);
     if (res) {
       context.commit("setUser", res.user);
@@ -60,6 +66,8 @@ const actions = {
   async signinWithGoogle(context) {
     // Set provider
     const provider = new GoogleAuthProvider();
+    // Set State Persistance
+    await setPersistence(auth, browserSessionPersistence);
     const res = await signInWithPopup(auth, provider);
     if (res) {
       context.commit("setUser", res.user);
@@ -74,6 +82,8 @@ const actions = {
   async signinWithFacebook(context) {
     // set provider
     const provider = new FacebookAuthProvider();
+    // Set State Persistance
+    await setPersistence(auth, browserSessionPersistence);
     const res = await signInWithPopup(auth, provider);
     if (res) {
       context.commit("setUser", res.user);
