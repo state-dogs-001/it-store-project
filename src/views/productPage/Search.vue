@@ -13,7 +13,15 @@
 
         <b-row>
           <b-col>
-            <p>ผลการค้นหา</p>
+            <h5
+              style="
+                color: rgb(255, 43, 96);
+                font-weight: bold;
+                letter-spacing: 1.5px;
+              "
+            >
+              ผลการค้นหา
+            </h5>
             <br />
             <template v-if="filterData.length <= 0">
               <p>Sorry, this {{ searchText }} is not found</p>
@@ -41,6 +49,7 @@
                       {{
                         read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
                       }}
+                      บาท
                     </b-card-text>
 
                     <!-- Button -->
@@ -90,6 +99,11 @@ export default {
   },
   methods: {
     ...mapActions(["getProductsInStock"]),
+
+    // Go to product more
+    getProductID(id) {
+      this.$router.push(`/view/product/?id=${id}`);
+    },
   },
 };
 </script>
@@ -105,6 +119,15 @@ export default {
   height: 100%;
   overflow: hidden;
   box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.card-image .card-title {
+  text-transform: capitalize;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: rgb(255, 43, 96);
+}
+.card-image .card-subtitle {
+  text-transform: uppercase;
 }
 .card-image img {
   margin: 0 auto;

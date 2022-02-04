@@ -9,7 +9,7 @@
         no-body
       >
         <template #header>
-          <h2>Dashboard</h2>
+          <h2>DASHBOARD</h2>
         </template>
 
         <!-- Left position is menu setting -->

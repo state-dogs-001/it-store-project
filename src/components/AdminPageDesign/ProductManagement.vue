@@ -425,6 +425,8 @@ export default {
     },
     // Open modal update product
     openModalUpdateProduct(i) {
+      // Set index
+      i += this.calIndex;
       // Set data
       this.id = this.products[i].id;
       this.typeProduct = this.products[i].typeProduct;
@@ -550,6 +552,9 @@ export default {
 
     // Toast Description
     descriptionToast(i) {
+      // Set index
+      i += this.calIndex;
+      // Set data
       const productName = this.products[i].nameProduct.toUpperCase();
       const description = this.products[i].description;
       this.$bvToast.toast(description, {

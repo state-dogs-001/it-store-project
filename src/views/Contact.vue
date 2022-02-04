@@ -11,8 +11,14 @@
           <h1>ผู้จัดทำ</h1>
         </template>
         <b-row>
-          <b-col lg="4" sm="12" class="myImage my-3 text-center">
-            <b-img :src="myImg" rounded="circle" />
+          <b-col lg="4" sm="12" class="my-3 text-center">
+            <div class="myImage">
+              <b-img :src="myImg" />
+              <div class="img-overlay">
+                <div class="title">อาร์ม</div>
+                <div class="text">นักศึกษาวิชาวิทยาการคอมพิวเตอร์</div>
+              </div>
+            </div>
           </b-col>
           <b-col lg="8" sm="12" class="my-3">
             <h3>ชื่อผู้จัดทำ</h3>
@@ -83,9 +89,6 @@ export default {
 .card-contact {
   border: none;
 }
-.myImage img {
-  max-width: 15rem;
-}
 .link-contact a {
   color: black;
   margin-right: 10px;
@@ -94,9 +97,50 @@ export default {
   text-decoration: none;
   color: rgb(255, 43, 96);
 }
-@media (max-width: 770px) {
-  .myImage img {
-    max-width: 10rem;
-  }
+
+.myImage {
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  width: 15rem;
+}
+.myImage img {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+}
+.myImage .img-overlay {
+  position: absolute;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  left: 0px;
+  bottom: 0px;
+  margin: 0px auto;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.myImage .img-overlay .title {
+  font-size: 2em;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+.myImage .img-overlay .text {
+  font-size: 1em;
+  margin-top: 0.25em;
+}
+.myImage img:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+.myImage .img-overlay:hover {
+  opacity: 1;
 }
 </style>

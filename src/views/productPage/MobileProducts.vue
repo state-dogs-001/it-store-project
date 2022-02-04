@@ -36,7 +36,8 @@
           class="card-image"
         >
           <b-card-text>
-            ราคา = {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+            ราคา =
+            {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }} บาท
           </b-card-text>
 
           <!-- Button -->
@@ -75,7 +76,8 @@
           class="card-image"
         >
           <b-card-text>
-            ราคา = {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+            ราคา =
+            {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }} บาท
           </b-card-text>
 
           <!-- Button -->
@@ -116,7 +118,8 @@
           class="card-image"
         >
           <b-card-text>
-            ราคา = {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+            ราคา =
+            {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }} บาท
           </b-card-text>
 
           <!-- Button -->
@@ -157,7 +160,8 @@
           class="card-image"
         >
           <b-card-text>
-            ราคา = {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+            ราคา =
+            {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }} บาท
           </b-card-text>
 
           <!-- Button -->
@@ -279,6 +283,15 @@ export default {
   height: 100%;
   overflow: hidden;
   box-shadow: 0 16px 16px 0 rgba(0, 0, 0, 0.2);
+}
+.card-image .card-title {
+  text-transform: capitalize;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: rgb(255, 43, 96);
+}
+.card-image .card-subtitle {
+  text-transform: uppercase;
 }
 .card-image img {
   margin: 0 auto;

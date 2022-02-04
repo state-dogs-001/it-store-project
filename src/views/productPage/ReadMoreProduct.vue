@@ -18,8 +18,13 @@
           </b-col>
           <b-col lg="8" sm="12">
             <b-row>
-              <b-col lg="12" class="mt-5">
+              <b-col lg="12" class="mt-5 render-product">
                 <h3>{{ read.nameProduct }}</h3>
+                <h5>
+                  ราคา
+                  {{ read.priceProduct.replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}
+                  บาท
+                </h5>
                 <br />
                 <p>
                   {{ read.description }}
@@ -81,5 +86,14 @@ export default {
 .image-product img:hover {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+.render-product h3 {
+  text-transform: capitalize;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: rgb(255, 43, 96);
+}
+.render-product h5 {
+  letter-spacing: 1.5px;
 }
 </style>
