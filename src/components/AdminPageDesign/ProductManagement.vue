@@ -112,7 +112,12 @@
     </div>
 
     <!-- Modal Add Product -->
-    <b-modal v-model="modalAddProduct" centered hide-footer>
+    <b-modal
+      v-model="modalAddProduct"
+      centered
+      hide-footer
+      no-close-on-backdrop
+    >
       <!-- Modal header -->
       <template #modal-header="{ close }">
         <h3>เพิ่มสินค้า</h3>
@@ -228,7 +233,12 @@
     </b-modal>
 
     <!-- Modal Update Product -->
-    <b-modal v-model="modalUpdateProduct" centered hide-footer>
+    <b-modal
+      v-model="modalUpdateProduct"
+      centered
+      hide-footer
+      no-close-on-backdrop
+    >
       <!-- Modal header -->
       <template #modal-header="{ close }">
         <h3>แก้ไขสินค้า</h3>
