@@ -2,6 +2,10 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import store from "../store";
 
+// Import firebase auth
+import { auth } from "../configs/firebase.js";
+import { onAuthStateChanged } from "firebase/auth";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -164,6 +168,19 @@ const routes = [
     },
   },
   {
+    path: "/buy_history",
+    name: "Buy History",
+    component: () => import("../views/userPage/BuyHistory.vue"),
+    beforeEnter: (to, from, next) => {
+      // if user is null redirect to login
+      if (!store.state.Auth.authIsReady) {
+        next({ name: "Login" });
+      } else {
+        next();
+      }
+    },
+  },
+  {
     path: "/user/update_name",
     name: "Profile",
     component: () => import("../views/userPage/UpdateName.vue"),
@@ -237,7 +254,15 @@ const routes = [
       if (!store.state.Auth.authIsReady) {
         next({ name: "Login" });
       } else {
-        next();
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            if (user.email == "admin@itmarket.com") {
+              next();
+            } else {
+              next({ name: "Products" });
+            }
+          }
+        });
       }
     },
   },

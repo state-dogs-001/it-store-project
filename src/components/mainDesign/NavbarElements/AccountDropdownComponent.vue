@@ -23,14 +23,16 @@
           <span class="text-center">ยินดีตอนรับ {{ user.email }}</span>
         </b-dropdown-item>
         <hr />
-        <!-- User Setting -->
-        <div v-for="item in links" :key="item.name">
-          <b-dropdown-item :to="item.link">
-            <p>{{ item.name }} <b-icon :icon="item.icon" /></p>
-          </b-dropdown-item>
-        </div>
+        <template v-if="!status_admin">
+          <!-- User Setting -->
+          <div v-for="item in links" :key="item.name">
+            <b-dropdown-item :to="item.link">
+              <p>{{ item.name }} <b-icon :icon="item.icon" /></p>
+            </b-dropdown-item>
+          </div>
+        </template>
         <!-- Admin Setting -->
-        <template>
+        <template v-if="status_admin">
           <b-dropdown-item to="/dashboard">
             <p>หน้าจัดการสินค้า</p>
           </b-dropdown-item>
@@ -47,14 +49,37 @@
 </template>
 
 <script>
+// Import firebase auth
+import { auth } from "../../../configs/firebase.js";
+import { onAuthStateChanged } from "firebase/auth";
+
 // Import mapActios from vuex
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+  beforeCreate() {
+    // Change admin login
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if (user.email == "admin@itmarket.com") {
+          this.status_admin = true;
+        } else {
+          this.status_admin = false;
+        }
+      }
+    });
+  },
   data() {
     return {
+      status_admin: false,
+
       links: [
         { icon: "gear", name: "ตั้งค่าโปรไฟล์", link: "/user" },
+        {
+          icon: "clock-history",
+          name: "ประวัติการสั่งซื้อ",
+          link: "/buy_history",
+        },
         { icon: "bug-fill", name: "รายงานปัญหา", link: "/report" },
       ],
     };

@@ -1,6 +1,6 @@
 <template>
   <div id="login-page">
-    <b-container>
+    <b-container style="max-width: 750px">
       <!-- Alert when progress failed -->
       <b-alert
         :show="dismissCountDown"
@@ -143,10 +143,16 @@ export default {
         });
         // Set Statatus of showSuccessAlert to show alert
         this.showSuccessAlert = true;
-        // Set time to redirect to product page in 2 sec.
-        setTimeout(() => {
-          this.$router.push("/products");
-        }, 2000);
+        // Set time to redirect to another page in 2 sec.
+        if (this.email.toLowerCase() === "admin@itmarket.com") {
+          setTimeout(() => {
+            this.$router.push("/dashboard");
+          }, 2000);
+        } else {
+          setTimeout(() => {
+            this.$router.push("/products");
+          }, 2000);
+        }
       } catch (err) {
         // Show alert when login failed
         this.dismissCountDown = this.dismissSecs;

@@ -16,6 +16,7 @@ const state = {
   addProductStatus: false,
   updateProductStatus: false,
   deleteProductStatus: false,
+  userOrders: [],
   userReport: [],
 };
 
@@ -31,6 +32,9 @@ const mutations = {
   setDeleteStatus(state, status) {
     state.deleteProductStatus = status;
     console.log("Delete status ", state.deleteProductStatus);
+  },
+  setUserOrders(state, data) {
+    state.userOrders = data;
   },
   setUserReport(state, data) {
     state.userReport = data;
@@ -67,8 +71,25 @@ const actions = {
     }, 2000);
   },
 
+  // Get user orders
+  getUserOrders({ commit }) {
+    let data = [];
+    const q = query(collection(db, "itmarket_user_orders"), orderBy("date"));
+    onSnapshot(q, (snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          data.push({
+            ...change.doc.data(),
+            id: change.doc.id,
+          });
+        }
+      });
+    });
+    commit("setUserOrders", data);
+  },
+
   // Get user report
-  async getUserReport({ commit }) {
+  getUserReport({ commit }) {
     let data = [];
     const q = query(
       collection(db, "itmarket_user_report"),
@@ -89,6 +110,7 @@ const actions = {
 };
 
 const getters = {
+  userOrders: (state) => state.userOrders,
   userReport: (state) => state.userReport,
 };
 

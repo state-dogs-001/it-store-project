@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-container>
+    <b-container style="max-width: 750px">
       <!-- Alert when progress failed -->
       <b-alert
         :show="dismissCountDown"

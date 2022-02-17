@@ -29,6 +29,7 @@ const state = {
   productsInBasket: [],
   buyProductStatus: false,
   deleteProductStatus: false,
+  buyHistory: [],
 };
 
 const mutations = {
@@ -64,6 +65,9 @@ const mutations = {
   setDeleteProductStatus(state, status) {
     state.deleteProductStatus = status;
     console.log("Delete product", state.deleteProductStatus);
+  },
+  setBuyHistory(state, data) {
+    state.buyHistory = data;
   },
 };
 
@@ -202,12 +206,38 @@ const actions = {
     await deleteDoc(doc(db, "itmarket_user_basket", id));
     commit("setDeleteProductStatus", true);
   },
+
+  // Get buy history
+  getBuyHistory({ commit }) {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        let data = [];
+        const q = query(
+          collection(db, "itmarket_user_orders"),
+          where("user_email", "==", user.email),
+          orderBy("date")
+        );
+        onSnapshot(q, (snapshot) => {
+          snapshot.docChanges().forEach((change) => {
+            if (change.type === "added") {
+              data.push({
+                ...change.doc.data(),
+                id: change.doc.id,
+              });
+            }
+          });
+        });
+        commit("setBuyHistory", data);
+      }
+    });
+  },
 };
 
 const getters = {
   telNumber: (state) => state.userTelNumber,
   location: (state) => state.userLocation,
   productsInBasket: (state) => state.productsInBasket,
+  buyHistory: (state) => state.buyHistory,
 };
 
 export default {

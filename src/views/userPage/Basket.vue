@@ -46,7 +46,9 @@
                   <td width="150px">
                     <img width="100%" class="rounded" :src="item.img_product" />
                   </td>
-                  <td>{{ item.name_product }}</td>
+                  <td style="text-transform: capitalize">
+                    {{ item.name_product }}
+                  </td>
                   <td>
                     <b-form-spinbutton
                       id="sb-inline"
@@ -142,10 +144,13 @@ export default {
         });
 
         const data = {
+          user_email: e.user_email,
           user_name: this.user.displayName,
           user_tel: telNumber,
           user_location: location,
           name_product: e.name_product,
+          number_product: numberProduct,
+          img_product: e.img_product,
           sum_price: sumPrice,
           date: Timestamp.now(),
         };

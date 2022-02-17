@@ -23,12 +23,7 @@
 
           <b-tab title="คำสั่งซื้อ">
             <b-card-text class="card-text-size">
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Eligendi itaque voluptas unde quod quis et, id molestiae,
-                pariatur ipsa voluptate delectus ex exercitationem sint odit
-                quas eveniet cupiditate in? Blanditiis?
-              </p>
+              <UserOrder />
             </b-card-text>
           </b-tab>
 
@@ -45,11 +40,13 @@
 
 <script>
 import ProductManage from "../../components/AdminPageDesign/ProductManagement.vue";
+import UserOrder from "../../components/AdminPageDesign/UserOrder.vue";
 import UserReport from "../../components/AdminPageDesign/UserReport.vue";
 
 export default {
   components: {
     ProductManage,
+    UserOrder,
     UserReport,
   },
   data() {
