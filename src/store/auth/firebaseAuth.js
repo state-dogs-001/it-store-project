@@ -32,7 +32,6 @@ const state = {
 const actions = {
   // Register
   async signup(context, { email, password, name }) {
-    console.log("Singup Action");
     // Set State Persistance
     await setPersistence(auth, browserSessionPersistence);
     const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -49,7 +48,6 @@ const actions = {
 
   // Signin
   async signin(context, { email, password }) {
-    console.log("Signin Action");
     // Set State Persistance
     await setPersistence(auth, browserSessionPersistence);
     const res = await signInWithEmailAndPassword(auth, email, password);
@@ -96,7 +94,6 @@ const actions = {
 
   // Signout
   async signout(context) {
-    console.log("Signout Action");
     await signOut(auth);
     context.commit("setUser", null);
     // Set user status
@@ -105,14 +102,12 @@ const actions = {
 
   // Reset Password With email
   async resetpassword(context, { email }) {
-    console.log("Reset Password Action");
     await sendPasswordResetEmail(auth, email);
     context.commit("setSendPasswordEmailStatus", true);
   },
 
   // Update Password
   async updatepassword(context, password) {
-    console.log("Update Password");
     const user = auth.currentUser;
     await updatePassword(user, password);
     context.commit("setUpdatePasswordStatus", true);
@@ -120,7 +115,6 @@ const actions = {
 
   // Upadete displayName
   async updateDisplayName(context, name) {
-    console.log("Update Name");
     const user = auth.currentUser;
     await updateProfile(user, {
       displayName: name,
@@ -132,23 +126,18 @@ const actions = {
 const mutations = {
   setUser(state, payload) {
     state.user = payload;
-    console.log("User email ", state.user);
   },
   setAuthIsReady(state, payload) {
     state.authIsReady = payload;
-    console.log("User status ", state.authIsReady);
   },
   setSendPasswordEmailStatus(state, status) {
     state.sendPasswordEmailStatus = status;
-    console.log("Send Email ", state.sendPasswordEmailStatus);
   },
   setUpdatePasswordStatus(state, status) {
     state.updatePasswordStatus = status;
-    console.log("Update Password ", state.updatePasswordStatus);
   },
   setUpdateNameStatus(state, status) {
     state.updateNameStatus = status;
-    console.log("Update Name ", state.updateNameStatus);
   },
 };
 

@@ -23,15 +23,12 @@ const state = {
 const mutations = {
   setAddStatus(state, status) {
     state.addProductStatus = status;
-    console.log("Add status ", state.addProductStatus);
   },
   setUpdateStatus(state, status) {
     state.updateProductStatus = status;
-    console.log("Update status ", state.updateProductStatus);
   },
   setDeleteStatus(state, status) {
     state.deleteProductStatus = status;
-    console.log("Delete status ", state.deleteProductStatus);
   },
   setUserOrders(state, data) {
     state.userOrders = data;

@@ -35,36 +35,30 @@ const state = {
 const mutations = {
   setUpdateTelStatus(state, status) {
     state.updateTelStatus = status;
-    console.log("Update Tel ", state.updateTelStatus);
   },
   setUserTel(state, data) {
     state.userTelNumber = data;
   },
   setUpdateLocationStatus(state, status) {
     state.updateLocationStatus = status;
-    console.log("Update Location ", state.updateLocationStatus);
   },
   setUserLocation(state, data) {
     state.userLocation = data;
   },
   setUserReportStatus(state, status) {
     state.userReportStatus = status;
-    console.log("Report ", state.userReportStatus);
   },
   setUserAddProductStatus(state, status) {
     state.userAddProductStatus = status;
-    console.log("Add Product ", state.userAddProductStatus);
   },
   setProductsInBasket(state, data) {
     state.productsInBasket = data;
   },
   setBuyProductStatus(state, status) {
     state.buyProductStatus = status;
-    console.log("Buy ", state.buyProductStatus);
   },
   setDeleteProductStatus(state, status) {
     state.deleteProductStatus = status;
-    console.log("Delete product", state.deleteProductStatus);
   },
   setBuyHistory(state, data) {
     state.buyHistory = data;
