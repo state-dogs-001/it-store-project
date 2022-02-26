@@ -8,7 +8,7 @@
             <span class="font-weight-lighter">IT</span>
             <span class="font-weight-bold">Market</span>
           </h1>
-          <span> ยินดีตอนรับ {{ userName }} </span>
+          <span> ยินดีต้อนรับ {{ userName }} </span>
         </b-col>
 
         <!-- Products Card-->

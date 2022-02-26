@@ -492,6 +492,8 @@ export default {
 
         // close modal
         this.modalAddProduct = false;
+        // Alert
+        alert("Add product successfully.");
       } catch (error) {
         console.log(error);
       }
@@ -518,7 +520,8 @@ export default {
 
         // close modal
         this.modalUpdateProduct = false;
-
+        // alert
+        alert("Update product successfully.");
         // refresh page
         window.location.reload();
       } catch (error) {

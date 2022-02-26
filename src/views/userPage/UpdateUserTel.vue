@@ -10,7 +10,7 @@
         @dismissed="dismissCountDown = 0"
         @dismiss-count-down="countDownChanged"
       >
-        <p>{{ error }}</p>
+        <p>Error, update phone number not successfully</p>
         <b-progress
           variant="danger"
           :max="dismissSecs"
