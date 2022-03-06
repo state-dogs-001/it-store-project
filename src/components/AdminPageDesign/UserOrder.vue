@@ -6,7 +6,7 @@
         <thead>
           <tr class="bg-dark text-light">
             <th scope="col" colspan="8">
-              <h5>คำรายงานจากผู้ใช้งานเว็บไซต์</h5>
+              <h5>รายการคำสั่งซื้อสินค้า</h5>
             </th>
           </tr>
           <tr>
